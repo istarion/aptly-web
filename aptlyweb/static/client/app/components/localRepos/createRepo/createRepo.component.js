@@ -6,7 +6,9 @@ let createRepoComponent = {
   restrict: 'E',
   bindings: {},
   template,
-  controller
+  controller,
+  controllerAs: '$ctrl',
+  ariaLabel: 'Create repository',
 };
 
 export default createRepoComponent;

@@ -1,6 +1,8 @@
 import angular from 'angular';
+import createRepo from './createRepo/createRepo'
 import CreateRepoController from './createRepo/createRepo.controller';
-import './createRepo/createRepo.html';
+import CreateRepoComponent from './createRepo/createRepo.component';
+import CreateRepoTemplate from './createRepo/createRepo.html';
 
 class LocalReposController {
   constructor($resource, $mdDialog) {
@@ -16,14 +18,12 @@ class LocalReposController {
     );
 
     this.createRepo = function (event) {
-      $mdDialog.show({
-        controller: CreateRepoController,
-        templateUrl: CreateRepoTemplate,
+      $mdDialog.show(angular.extend(CreateRepoComponent, {
         parent: angular.element(document.body),
         targetEvent: event,
         clickOutsideToClose: true,
         fullscreen: true
-      }).then(function () {
+      })).then(function () {
         self.local_repos_resource.query();
         console.log('done');
       });
