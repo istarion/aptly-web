@@ -1,18 +1,38 @@
-<md-dialog>
+<md-dialog class="createRepo">
   <md-toolbar>
     <div class="md-toolbar-tools">
-      <h2>Create repository</h2>
+      <h2>Create local repository</h2>
       <span flex></span>
-      <md-button class="md-icon-button" ng-click="cancel()">
+      <md-button class="md-icon-button" ng-click="$ctrl.cancel()">
         <md-icon aria-label="Close dialog">clear</md-icon>
       </md-button>
     </div>
   </md-toolbar>
-  <div aria-label="Create repository">
-    <h1>{{ $ctrl.name }}</h1>
-    123123123
-  </div>
+  <md-dialog-content>
+    <div aria-label="Create repository">
+      <div flex="row">
+        <md-input-container class="md-block">
+          <label>Name</label>
+          <input ng-model="$ctrl.repo.Name">
+        </md-input-container>
+        <md-input-container class="md-block">
+          <label>Commentary</label>
+          <input ng-model="$ctrl.repo.Comment">
+        </md-input-container>
+        <md-input-container class="md-block">
+          <label>DefaultDistribution</label>
+          <input ng-model="$ctrl.repo.DefaultDistribution">
+        </md-input-container>
+        <md-input-container class="md-block">
+          <label>DefaultComponent</label>
+          <input ng-model="$ctrl.repo.DefaultComponent">
+        </md-input-container>
+      </div>
+      <div flex="row">
+        <md-button class="md-primary md-raised" ng-click="$ctrl.answer($ctrl.repo)">OK</md-button>
+      </div>
 
+    </div>
   </md-dialog-content>
 
 </md-dialog>

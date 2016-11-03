@@ -1,11 +1,8 @@
 import angular from 'angular';
-import createRepo from './createRepo/createRepo'
-import CreateRepoController from './createRepo/createRepo.controller';
 import CreateRepoComponent from './createRepo/createRepo.component';
-import CreateRepoTemplate from './createRepo/createRepo.html';
 
 class LocalReposController {
-  constructor($resource, $mdDialog) {
+  constructor($resource, $mdDialog, $mdToast) {
     'ngInject';
     var self = this;
     this.name = 'localRepos';
@@ -14,6 +11,10 @@ class LocalReposController {
     this.local_repos_resource = $resource('http://localhost:5001/repos/get_local_repos');
     this.local_repos_resource.query().$promise.then(function (result) {
         self.local_repos = result;
+      }, function (fail_result) {
+        var toast = $mdToast.simple().textContent('Something goes wrong').position('top right').hideDelay(3000);
+        $mdToast.show(toast);
+        console.log(fail_result)
       }
     );
 
@@ -23,9 +24,16 @@ class LocalReposController {
         targetEvent: event,
         clickOutsideToClose: true,
         fullscreen: true
-      })).then(function () {
-        self.local_repos_resource.query();
-        console.log('done');
+      })).then(function (answer) {
+        self.local_repos.push(answer);
+        console.log(answer);
+      }, function (fail_answer) {
+        if (fail_answer && !fail_answer.data && !fail_answer.data.error) {
+          var toast = $mdToast.simple().textContent(fail_answer.data.error).position('top right').hideDelay(3000);
+        }
+
+        $mdToast.show(toast);
+        console.log(fail_answer)
       });
     }
   }

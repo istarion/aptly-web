@@ -5,6 +5,7 @@
 }
 .localRepos .container h3 {
   margin: 0;
+  display: inline;
 }
 .localRepos div {
   height: 100%;
