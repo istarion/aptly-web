@@ -3,6 +3,7 @@ import uiRouter from 'angular-ui-router';
 import ngMaterial from 'angular-material';
 
 import localReposComponent from './localRepos.component';
+import LocalReposResource from './localRepos.service';
 
 let localReposModule = angular.module('localRepos', [
   uiRouter,
@@ -22,6 +23,8 @@ let localReposModule = angular.module('localRepos', [
 })
 
 .component('localRepos', localReposComponent)
+
+.service('LocalReposResource', LocalReposResource)
 
 .name;
 

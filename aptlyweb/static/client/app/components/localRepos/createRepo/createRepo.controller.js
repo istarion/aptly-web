@@ -1,5 +1,5 @@
 class CreateRepoController {
-  constructor($mdDialog, $resource) {
+  constructor($mdDialog, $resource, LocalReposResource) {
     'ngInject';
     var self = this;
     this.name = 'createRepo';
@@ -11,8 +11,7 @@ class CreateRepoController {
     };
 
     this.answer = function (repo) {
-      this.createRepoResource = $resource('http://localhost:5001/repos/create_local_repo');
-      this.createRepoResource.get(repo).$promise.then(function (result) {
+      LocalReposResource.save(repo, function (result) {
         $mdDialog.hide(result);
       },function (fail_result) {
         $mdDialog.cancel(fail_result);

@@ -2,40 +2,48 @@ import angular from 'angular';
 import CreateRepoComponent from './createRepo/createRepo.component';
 
 class LocalReposController {
-  constructor($resource, $mdDialog, $mdToast) {
+  constructor($resource, $mdDialog, $mdToast, LocalReposResource) {
     'ngInject';
     var self = this;
     this.name = 'localRepos';
-    this.local_repos = [];
-
-    this.local_repos_resource = $resource('http://localhost:5001/repos/get_local_repos');
-    this.local_repos_resource.query().$promise.then(function (result) {
-        self.local_repos = result;
-      }, function (fail_result) {
-        var toast = $mdToast.simple().textContent('Something goes wrong').position('top right').hideDelay(3000);
-        $mdToast.show(toast);
-        console.log(fail_result)
-      }
-    );
+    this.$mdToast =$mdToast;
+    this.$resource = $resource;
+    this.LocalReposResource = LocalReposResource;
+    this.local_repos = LocalReposResource.query();
 
     this.createRepo = function (event) {
-      $mdDialog.show(angular.extend(CreateRepoComponent, {
+      var createDialog = angular.extend(CreateRepoComponent, {
         parent: angular.element(document.body),
         targetEvent: event,
         clickOutsideToClose: true,
         fullscreen: true
-      })).then(function (answer) {
+      });
+      $mdDialog.show(createDialog).then(function (answer) {
         self.local_repos.push(answer);
-        console.log(answer);
       }, function (fail_answer) {
-        if (fail_answer && !fail_answer.data && !fail_answer.data.error) {
+        if (fail_answer && fail_answer.data && fail_answer.data.error) {
           var toast = $mdToast.simple().textContent(fail_answer.data.error).position('top right').hideDelay(3000);
         }
-
         $mdToast.show(toast);
-        console.log(fail_answer)
       });
-    }
+    };
+
+    this.confirmDeleteRepo = function (event, repo) {
+      var confirmDialog = $mdDialog.confirm()
+                          .title('Would you like to delete repository ' + repo.Name + '?')
+                          .textContent('Repository will be deleted.')
+                          .ariaLabel('Repository deleting dialog')
+                          .targetEvent(event)
+                          .ok('Yes')
+                          .cancel('No');
+      $mdDialog.show(confirmDialog).then(function () { //SUCCESS
+        self.deleteRepo(repo);
+      })
+    };
+  }
+
+  deleteRepo(repo) {
+    repo.$delete(repo.Name);
   }
 }
 
