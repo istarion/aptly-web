@@ -1,0 +1,79 @@
+<div class="localRepos">
+  <h1>{{ $ctrl.name }}</h1>
+  <div class="container">
+    <div ng-repeat="repo in $ctrl.local_repos">
+      <md-menu md-offset="10 30">
+        <md-button ng-click="$mdOpenMenu($event)">
+          <h3>
+            <md-icon> archive</md-icon>
+            {{repo.Name}}
+          </h3><i>({{repo.Comment}})</i>
+        </md-button>
+        <md-menu-content class="repo-menu" width="4">
+          <md-menu-item>
+            <md-button>
+              Show packages
+            </md-button>
+          </md-menu-item>
+          <md-menu-divider></md-menu-divider>
+          <md-menu-item>
+            <md-button>
+              Add packages from upload
+            </md-button>
+          </md-menu-item>
+          <md-menu-item>
+            <md-button>
+              Add packages by key
+            </md-button>
+          </md-menu-item>
+          <md-menu-item>
+            <md-button>
+              Delete packages by key
+            </md-button>
+          </md-menu-item>
+          <md-menu-divider></md-menu-divider>
+          <md-menu-item>
+            <md-button>
+              Edit repository
+            </md-button>
+          </md-menu-item>
+          <md-menu-item>
+            <md-button>
+              Delete repository
+            </md-button>
+          </md-menu-item>
+        </md-menu-content>
+      </md-menu>
+    </div>
+    <md-button class="add_button" ng-click="$ctrl.createRepo($event)">
+            <h3></h3><md-icon>add_box</md-icon> Create new repository
+      </h3>
+    </md-button>
+  </div>
+
+
+  <!--<table flex>-->
+    <!--<thead>-->
+      <!--<th>-->
+        <!--Name-->
+      <!--</th>-->
+      <!--<th>-->
+        <!--Comment-->
+      <!--</th>-->
+     <!--<th>-->
+        <!--Default Component-->
+      <!--</th>-->
+     <!--<th>-->
+        <!--Default Distribution-->
+      <!--</th>-->
+    <!--</thead>-->
+    <!--<tbody>-->
+      <!--<tr ng-repeat="repo in $ctrl.local_repos">-->
+        <!--<td>{{repo.Name}}</td>-->
+        <!--<td>{{repo.Comment}}</td>-->
+        <!--<td>{{repo.DefaultComponent}}</td>-->
+        <!--<td>{{repo.DefaultDistribution}}</td>-->
+      <!--</tr>-->
+    <!--</tbody>-->
+  <!--</table>-->
+</div>

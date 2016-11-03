@@ -1,0 +1,20 @@
+<md-sidenav class="md-sidenav-left" md-component-id="left" md-is-locked-open="$mdMedia('gt-sm')"
+            md-whiteframe="4" ng-click="$ctrl.toggle()">
+  <ul class="side-menu">
+    <li>
+      <a class="md-button md-ink-ripple" ui-sref="about">
+        About
+      </a>
+    </li>
+    <li>
+      <a class="md-button md-ink-ripple" ui-sref="aptly_version" ng-class="{'active': isSelected()}">
+        Aptly Version
+      </a>
+    </li>
+    <li>
+      <a class="md-button md-ink-ripple" ui-sref="local_repos" ng-class="{'active': isSelected()}">
+        Local Repos
+      </a>
+    </li>
+  </ul>
+</md-sidenav>

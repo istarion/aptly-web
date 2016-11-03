@@ -1,0 +1,9 @@
+requests ~= 2.11.1
+webargs ~= 1.4.0
+
+Flask-Login ~= 0.4.0
+Flask-ini ~= 0.2.1
+Flask-RESTful ~= 0.3.5
+Flask-Cors ~= 3.0.2
+
+pyptly ~= 1.0.2
