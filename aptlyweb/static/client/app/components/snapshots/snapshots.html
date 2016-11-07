@@ -1,0 +1,42 @@
+<div class="snapshots" md-toa>
+  <h1>{{ $ctrl.name }}</h1>
+  <div class="container">
+    <div ng-repeat="snapshot in $ctrl.snapshots">
+      <md-menu md-offset="10 30">
+        <md-button ng-click="$mdOpenMenu($event)">
+          <h3>
+            <md-icon> content_copy </md-icon>
+            {{snapshot.Name}}
+          </h3><i>({{snapshot.Description}})</i>
+        </md-button>
+        <md-menu-content class="repo-menu" width="4">
+          <md-menu-item>
+            <md-button ui-sref="packages({repoName: repo.Name})">
+              Show packages
+            </md-button>
+          </md-menu-item>
+          <md-menu-item>
+            <md-button ng-click="$ctrl.diffRepo($event, repo)">
+              Diff with...
+            </md-button>
+          </md-menu-item>
+          <md-menu-divider></md-menu-divider>
+          <md-menu-item>
+            <md-button ng-click="$ctrl.editRepo($event, repo)">
+              Edit snapshot
+            </md-button>
+          </md-menu-item>
+          <md-menu-item>
+            <md-button ng-click="$ctrl.confirmDeleteSnapshot($event, snapshot)">
+              Delete snapshot
+            </md-button>
+          </md-menu-item>
+        </md-menu-content>
+      </md-menu>
+    </div>
+    <md-button class="add_button" ng-click="$ctrl.createRepo($event)">
+            <h3></h3><md-icon>add_box</md-icon> Create new snapshot
+      </h3>
+    </md-button>
+  </div>
+</div>
