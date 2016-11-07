@@ -40,15 +40,3 @@ class LocalRepo(Resource):
             abort(422, error=result[0]['error'])
 
 
-
-class EditLocalRepo(Resource):
-    @staticmethod
-    def get():
-        parser = reqparse.RequestParser()
-        parser.add_argument('Name')
-        parser.add_argument('Comment')
-        parser.add_argument('DefaultDistribution')
-        parser.add_argument('DefaultComponent')
-        args = parser.parse_args()
-        return pyptly_api.edit_local_repo(**args)
-

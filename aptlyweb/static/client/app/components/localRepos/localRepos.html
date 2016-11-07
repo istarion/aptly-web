@@ -11,8 +11,13 @@
         </md-button>
         <md-menu-content class="repo-menu" width="4">
           <md-menu-item>
-            <md-button>
+            <md-button ui-sref="packages({repoName: repo.Name})">
               Show packages
+            </md-button>
+          </md-menu-item>
+          <md-menu-item>
+            <md-button ng-click="$ctrl.diffRepo($event, repo)">
+              Diff with...
             </md-button>
           </md-menu-item>
           <md-menu-divider></md-menu-divider>

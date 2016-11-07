@@ -2,7 +2,8 @@ import flask_restful
 
 from aptlyweb import app
 from aptlyweb.resources.aptly import AptlyVersion
-from aptlyweb.resources.repos import LocalRepo
+from aptlyweb.resources.repo import LocalRepo
+from aptlyweb.resources.local_package import LocalPackage
 
 
 def init_api():
@@ -13,6 +14,8 @@ def init_api():
     # Repos api
     api.add_resource(LocalRepo, '/repos/local_repos/', endpoint='local_repos')
     api.add_resource(LocalRepo, '/repos/local_repos/<string:name>', endpoint='local_repo')
+
+    api.add_resource(LocalPackage, '/repos/local_repos/<string:name>/packages', endpoint='local_package')
 
 
 

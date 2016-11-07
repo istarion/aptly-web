@@ -2,13 +2,14 @@ import angular from 'angular';
 import uiRouter from 'angular-ui-router';
 import ngMaterial from 'angular-material';
 
+import Packages from './packages/packages';
 import localReposComponent from './localRepos.component';
 import LocalReposResource from './localRepos.service';
 
 let localReposModule = angular.module('localRepos', [
   uiRouter,
   ngMaterial,
-
+  Packages
 ])
 
 .config(($stateProvider) => {
@@ -22,10 +23,10 @@ let localReposModule = angular.module('localRepos', [
     });
 })
 
-.component('localRepos', localReposComponent)
+  .component('localRepos', localReposComponent)
 
-.service('LocalReposResource', LocalReposResource)
+  .service('LocalReposResource', LocalReposResource)
 
-.name;
+  .name;
 
 export default localReposModule;

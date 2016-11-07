@@ -10,6 +10,6 @@ let sideBarModule = angular.module('sideBar', [
 
 .component('sideBar', sideBarComponent)
 
-.name
+.name;
 
 export default sideBarModule;
