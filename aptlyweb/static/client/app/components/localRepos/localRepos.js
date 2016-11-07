@@ -2,7 +2,6 @@ import angular from 'angular';
 import uiRouter from 'angular-ui-router';
 import ngMaterial from 'angular-material';
 
-import Packages from './packages/packages';
 import localReposComponent from './localRepos.component';
 import LocalReposResource from './localRepos.service';
 import SnapshotsResource from '../snapshots/snapshots.service';
@@ -10,7 +9,6 @@ import SnapshotsResource from '../snapshots/snapshots.service';
 let localReposModule = angular.module('localRepos', [
   uiRouter,
   ngMaterial,
-  Packages
 ])
 
 .config(($stateProvider) => {

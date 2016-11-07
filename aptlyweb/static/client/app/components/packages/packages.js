@@ -2,7 +2,7 @@ import angular from 'angular';
 import uiRouter from 'angular-ui-router';
 import ngMaterial from 'angular-material';
 import packagesComponent from './packages.component';
-import LocalPackagesResource from './packages.service';
+import PackagesResource from './packages.service';
 
 let packagesModule = angular.module('packages', [
   uiRouter,
@@ -13,7 +13,7 @@ let packagesModule = angular.module('packages', [
     "ngInject";
     $stateProvider
       .state('packages', {
-        url: '/packages/:repoName',
+        url: '/:type/:srcName',
         component: 'packages',
         title: 'Local packages'
       })
@@ -21,7 +21,7 @@ let packagesModule = angular.module('packages', [
 
   .component('packages', packagesComponent)
 
-  .service('LocalPackagesResource', LocalPackagesResource)
+  .service('PackagesResource', PackagesResource)
 
   .name;
 

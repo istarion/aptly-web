@@ -11,21 +11,16 @@
         </md-button>
         <md-menu-content class="repo-menu" width="4">
           <md-menu-item>
-            <md-button ui-sref="packages({repoName: repo.Name})">
+            <md-button ui-sref="packages({srcName: snapshot.Name, type: 'snapshots'})">
               Show packages
             </md-button>
           </md-menu-item>
           <md-menu-item>
-            <md-button ng-click="$ctrl.diffRepo($event, repo)">
+            <md-button ng-click="$ctrl.diffSnapshots($event, repo)">
               Diff with...
             </md-button>
           </md-menu-item>
           <md-menu-divider></md-menu-divider>
-          <md-menu-item>
-            <md-button ng-click="$ctrl.editRepo($event, repo)">
-              Edit snapshot
-            </md-button>
-          </md-menu-item>
           <md-menu-item>
             <md-button ng-click="$ctrl.confirmDeleteSnapshot($event, snapshot)">
               Delete snapshot
@@ -34,9 +29,5 @@
         </md-menu-content>
       </md-menu>
     </div>
-    <md-button class="add_button" ng-click="$ctrl.createRepo($event)">
-            <h3></h3><md-icon>add_box</md-icon> Create new snapshot
-      </h3>
-    </md-button>
   </div>
 </div>
