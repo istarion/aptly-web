@@ -3,6 +3,9 @@
   flex-wrap: wrap;
   vertical-align: top;
 }
+.localRepos .container .md-button {
+  text-transform: none;
+}
 .localRepos .container h3 {
   margin: 0;
   display: inline;
@@ -12,4 +15,8 @@
 }
 .repo-menu {
   max-height: 400px !important;
+}
+.repo-menu md-menu-item {
+  height: unset;
+  min-height: unset;
 }

@@ -5,6 +5,7 @@ import ngMaterial from 'angular-material';
 import Packages from './packages/packages';
 import localReposComponent from './localRepos.component';
 import LocalReposResource from './localRepos.service';
+import SnapshotsResource from '../snapshots/snapshots.service';
 
 let localReposModule = angular.module('localRepos', [
   uiRouter,
@@ -26,6 +27,7 @@ let localReposModule = angular.module('localRepos', [
   .component('localRepos', localReposComponent)
 
   .service('LocalReposResource', LocalReposResource)
+  .service('SnapshotsResource', SnapshotsResource)
 
   .name;
 

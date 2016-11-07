@@ -6,7 +6,7 @@ class LocalPackagesResource{
   constructor($resource, $mdToast) {
     'ngInject';
 
-    var data = $resource('http://localhost:5001/repos/local_repos/:Name/packages');
+    var data = $resource('http://localhost:5001/repos/:Name/packages');
 
     return data;
   }

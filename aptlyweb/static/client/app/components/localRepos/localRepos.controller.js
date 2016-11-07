@@ -3,14 +3,16 @@ import EditRepoComponent from './editRepo/editRepo.component';
 import DiffDialogComponent from './diffDialog/diffDialog.component';
 
 class LocalReposController {
-  constructor($resource, $mdDialog, $mdToast, LocalReposResource) {
+  constructor($mdDialog, $mdToast, LocalReposResource, SnapshotsResource) {
     'ngInject';
     var self = this;
     this.name = 'localRepos';
-    this.$mdToast = $mdToast;
-    this.$resource = $resource;
     this.LocalReposResource = LocalReposResource;
     this.local_repos = LocalReposResource.query();
+
+    this.query = function () {
+      self.local_repos = LocalReposResource.query();
+    };
 
 
     this.editRepo = function (event, repo) {
@@ -65,7 +67,6 @@ class LocalReposController {
         .cancel('No');
       $mdDialog.show(confirmDialog).then(function () { //SUCCESS
         self.deleteRepo(repo);
-        self.local_repos = LocalReposResource.query()
       })
     };
 
@@ -96,12 +97,41 @@ class LocalReposController {
         }
       });
       $mdDialog.show(diffDialog);
+    };
+
+
+    this.createSnapshotDialog = function (event, repo) {
+      var self = this;
+      var snapshotDialog = $mdDialog.prompt()
+        .title('Enter new snapshot name')
+        .textContent('Enter unique name of new snapshot')
+        .placeholder('Snapshot name')
+        .ariaLabel('Snapshot name')
+        .initialValue(repo.Name)
+        .targetEvent(event)
+        .ok('Create')
+        .cancel('Cancel');
+      $mdDialog.show(snapshotDialog).then(function (result) {
+        var answer = self.createSnapshot(repo.Name, result, SnapshotsResource, $mdToast);
+
+      });
     }
   };
 
+  createSnapshot(repo_name, snapshot_name, SnapshotsResource, $mdToast) {
+    SnapshotsResource.save({Name: snapshot_name},{repoName: repo_name}, function (result) {
+        console.log(result);
+        var toast = $mdToast.simple().textContent(result.Description).position('top right').hideDelay(3000);
+        $mdToast.show(toast);
+      }, function (result) {
+        var toast = $mdToast.simple().textContent(result.data.error).position('top right').hideDelay(3000);
+        $mdToast.show(toast);
+      }
+    );
+  }
 
   deleteRepo(repo) {
-    repo.$delete(repo.Name);
+    repo.$delete(repo.Name, this.query);
   }
 }
 

@@ -20,6 +20,11 @@
               Diff with...
             </md-button>
           </md-menu-item>
+          <md-menu-item>
+            <md-button ng-click="$ctrl.createSnapshotDialog($event, repo)">
+              Create snapshot
+            </md-button>
+          </md-menu-item>
           <md-menu-divider></md-menu-divider>
           <md-menu-item>
             <md-button>
@@ -51,7 +56,7 @@
       </md-menu>
     </div>
     <md-button class="add_button" ng-click="$ctrl.createRepo($event)">
-            <h3></h3><md-icon>add_box</md-icon> Create new repository
+            <h3></h3><md-icon>add_box</md-icon> CREATE NEW REPOSITORY
       </h3>
     </md-button>
   </div>

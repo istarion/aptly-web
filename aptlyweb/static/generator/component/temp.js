@@ -8,8 +8,8 @@ let <%= name %>Module = angular.module('<%= name %>', [
   ngMaterial
 ])
 
-.component('<%= name %>', <%= name %>Component)
+  .component('<%= name %>', <%= name %>Component)
 
-.name;
+  .name;
 
 export default <%= name %>Module;
