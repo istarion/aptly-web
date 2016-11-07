@@ -1,10 +1,10 @@
-class CreateRepoController {
-  constructor($mdDialog, $resource, LocalReposResource) {
+class EditRepoController {
+  constructor($mdDialog, $resource, LocalReposResource, repo) {
     'ngInject';
     var self = this;
     this.name = 'createRepo';
 
-    this.repo = {};
+    this.repo = repo;
 
     this.cancel = function () {
       $mdDialog.cancel();
@@ -28,4 +28,4 @@ class CreateRepoController {
 
 }
 
-export default CreateRepoController;
+export default EditRepoController;

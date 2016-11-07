@@ -1,5 +1,5 @@
 import angular from 'angular';
-import CreateRepoComponent from './createRepo/createRepo.component';
+import EditRepoComponent from './editRepo/editRepo.component';
 
 class LocalReposController {
   constructor($resource, $mdDialog, $mdToast, LocalReposResource) {
@@ -11,15 +11,37 @@ class LocalReposController {
     this.LocalReposResource = LocalReposResource;
     this.local_repos = LocalReposResource.query();
 
-    this.createRepo = function (event) {
-      var createDialog = angular.extend(CreateRepoComponent, {
+    this.editRepo = function (event, repo) {
+      var editDialog = angular.extend(EditRepoComponent, {
         parent: angular.element(document.body),
         targetEvent: event,
         clickOutsideToClose: true,
-        fullscreen: true
+        fullscreen: true,
+        locals: {
+          repo: repo
+        }
       });
-      $mdDialog.show(createDialog).then(function (answer) {
-        self.local_repos.push(answer);
+      $mdDialog.show(editDialog).then(function (answer) {
+      }, function (fail_answer) {
+        if (fail_answer && fail_answer.data && fail_answer.data.error) {
+          var toast = $mdToast.simple().textContent(fail_answer.data.error).position('top right').hideDelay(3000);
+        }
+        $mdToast.show(toast);
+      });
+    };
+
+    this.createRepo = function (event) {
+      var editDialog = angular.extend(EditRepoComponent, {
+        parent: angular.element(document.body),
+        targetEvent: event,
+        clickOutsideToClose: true,
+        fullscreen: true,
+        locals: {
+          repo: {}
+        }
+      });
+      $mdDialog.show(editDialog).then(function (answer) {
+        self.local_repos = LocalReposResource.query()
       }, function (fail_answer) {
         if (fail_answer && fail_answer.data && fail_answer.data.error) {
           var toast = $mdToast.simple().textContent(fail_answer.data.error).position('top right').hideDelay(3000);
@@ -38,6 +60,7 @@ class LocalReposController {
                           .cancel('No');
       $mdDialog.show(confirmDialog).then(function () { //SUCCESS
         self.deleteRepo(repo);
+        self.local_repos = LocalReposResource.query()
       })
     };
   }

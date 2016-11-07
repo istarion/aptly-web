@@ -21,7 +21,11 @@ class LocalRepo(Resource):
         parser.add_argument('DefaultDistribution')
         parser.add_argument('DefaultComponent')
         args = parser.parse_args()
-        result = pyptly_api.create_local_repo(args['Name'], **args)
+        test = pyptly_api.show_local_repo(name)
+        if isinstance(test, dict):
+            result = pyptly_api.edit_local_repo(name, **args)
+        else:
+            result = pyptly_api.create_local_repo(name, **args)
         if isinstance(result, dict) or 'error' not in result[0]:
             return result
         else:
