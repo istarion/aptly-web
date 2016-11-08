@@ -3,7 +3,7 @@ import uiRouter from 'angular-ui-router';
 import ngMaterial from 'angular-material';
 import DiffComponent from './diff.component';
 
-import DiffResource from './diff.service';
+import {DiffSnapSnapResource, DiffRepoSnapResource, DiffRepoRepoResource} from './diff.service';
 
 let DiffModule = angular.module('diff', [
   uiRouter,
@@ -14,7 +14,7 @@ let DiffModule = angular.module('diff', [
     "ngInject";
     $stateProvider
       .state('diff', {
-        url: '/diff/:leftSnap/:rightSnap',
+        url: '/diff/:diffType/:leftItem/:rightItem',
         component: 'diff',
         title: 'Diff'
       })
@@ -22,7 +22,9 @@ let DiffModule = angular.module('diff', [
 
   .component('diff', DiffComponent)
 
-  .service('DiffResource', DiffResource)
+  .service('DiffSnapSnapResource', DiffSnapSnapResource)
+  .service('DiffRepoSnapResource', DiffRepoSnapResource)
+  .service('DiffRepoRepoResource', DiffRepoRepoResource)
 
   .name;
 

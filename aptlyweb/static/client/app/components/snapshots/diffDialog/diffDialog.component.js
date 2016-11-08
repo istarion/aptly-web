@@ -8,7 +8,7 @@ let diffDialogComponent = {
   template,
   controller,
   controllerAs: '$ctrl',
-  ariaLabel: 'Diff repositories',
+  ariaLabel: 'Diff repositories/snapshots',
 };
 
 export default diffDialogComponent;

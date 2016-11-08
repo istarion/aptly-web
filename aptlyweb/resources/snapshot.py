@@ -34,8 +34,8 @@ class Snapshot(Resource):
 
 class SnapshotsDiff(Resource):
     @staticmethod
-    def get(left_snap, right_snap):
-        result = pyptly_api.snapshots_diff(left_snap, right_snap)
+    def get(left_item, right_item):
+        result = pyptly_api.snapshots_diff(left_item, right_item)
         for record in result:
             if record["Left"]:
                 record["Left"] = record["Left"].split(' ')

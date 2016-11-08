@@ -13,7 +13,7 @@
     <md-list>
       Repositories:
       <md-list-item ng-repeat="repo in $ctrl.repos" ng-if="$ctrl.leftType != 'repo' || repo.Name != $ctrl.leftItem.Name">
-        <md-button class="repo-button">
+        <md-button class="repo-button" ng-click="$ctrl.diffRepo($ctrl.leftItem, repo)">
           <md-icon> archive</md-icon>
           {{ repo.Name }}
         </md-button>
@@ -21,7 +21,7 @@
       Snapshots:
       <md-list-item ng-repeat="snapshot in $ctrl.snapshots"
                     ng-if="$ctrl.leftType != 'snapshot' || snapshot.Name != $ctrl.leftItem.Name">
-        <md-button class="repo-button" ng-click="$ctrl.diffSnapshots($ctrl.leftItem, snapshot)">
+        <md-button class="repo-button" ng-click="$ctrl.diffSnapshot($ctrl.leftItem, snapshot)">
           <md-icon> content_copy </md-icon>
           {{ snapshot.Name }}
         </md-button>
