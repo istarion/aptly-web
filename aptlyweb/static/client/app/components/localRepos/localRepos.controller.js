@@ -1,6 +1,6 @@
 import angular from 'angular';
 import EditRepoComponent from './editRepo/editRepo.component';
-import DiffDialogComponent from './diffDialog/diffDialog.component';
+import DiffDialogComponent from '../snapshots/diffDialog/diffDialog.component';
 
 class LocalReposController {
   constructor($mdDialog, $mdToast, LocalReposResource, SnapshotsResource) {
@@ -92,8 +92,8 @@ class LocalReposController {
         clickOutsideToClose: true,
         fullscreen: true,
         locals: {
-          leftRepo: repo,
-          repos: this.local_repos
+          leftItem: repo,
+          leftType: 'repo',
         }
       });
       $mdDialog.show(diffDialog);

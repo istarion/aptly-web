@@ -10,6 +10,16 @@ let DiffModule = angular.module('diff', [
   ngMaterial
 ])
 
+  .config(($stateProvider) => {
+    "ngInject";
+    $stateProvider
+      .state('diff', {
+        url: '/diff/:leftSnap/:rightSnap',
+        component: 'diff',
+        title: 'Diff'
+      })
+  })
+
   .component('diff', DiffComponent)
 
   .service('DiffResource', DiffResource)

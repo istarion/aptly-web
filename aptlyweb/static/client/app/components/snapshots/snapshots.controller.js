@@ -1,3 +1,5 @@
+import DiffDialogComponent from './diffDialog/diffDialog.component';
+
 class SnapshotsController {
   constructor(SnapshotsResource, $mdDialog) {
     'ngInject';
@@ -24,6 +26,21 @@ class SnapshotsController {
       $mdDialog.show(confirmDialog).then(function () { //SUCCESS
         self.deleteSnapshot(snapshot);
       })
+    };
+
+
+    this.diffSnap = function (event, snap) {
+      var diffDialog = angular.extend(DiffDialogComponent, {
+        parent: angular.element(document.body),
+        targetEvent: event,
+        clickOutsideToClose: true,
+        fullscreen: true,
+        locals: {
+          leftItem: snap,
+          leftType: 'snapshot',
+        }
+      });
+      $mdDialog.show(diffDialog);
     };
   }
 

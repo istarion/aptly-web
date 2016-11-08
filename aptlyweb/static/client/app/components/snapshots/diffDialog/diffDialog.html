@@ -1,0 +1,32 @@
+<md-dialog class="diffDialog">
+  <md-toolbar>
+    <div class="md-toolbar-tools">
+      <h2>Diff local repositories</h2>
+      <span flex></span>
+      <md-button class="md-icon-button" ng-click="$ctrl.cancel()">
+        <md-icon aria-label="Close dialog">clear</md-icon>
+      </md-button>
+    </div>
+  </md-toolbar>
+  <md-dialog-content>
+    <h3>Diff {{$ctrl.leftItem.Name}} with:</h3>
+    <md-list>
+      Repositories:
+      <md-list-item ng-repeat="repo in $ctrl.repos" ng-if="$ctrl.leftType != 'repo' || repo.Name != $ctrl.leftItem.Name">
+        <md-button class="repo-button">
+          <md-icon> archive</md-icon>
+          {{ repo.Name }}
+        </md-button>
+      </md-list-item>
+      Snapshots:
+      <md-list-item ng-repeat="snapshot in $ctrl.snapshots"
+                    ng-if="$ctrl.leftType != 'snapshot' || snapshot.Name != $ctrl.leftItem.Name">
+        <md-button class="repo-button" ng-click="$ctrl.diffSnapshots($ctrl.leftItem, snapshot)">
+          <md-icon> content_copy </md-icon>
+          {{ snapshot.Name }}
+        </md-button>
+      </md-list-item>
+    </md-list>
+  </md-dialog-content>
+
+</md-dialog>

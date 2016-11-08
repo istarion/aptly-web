@@ -1,3 +1,27 @@
-<div>
-  <h1>{{ $ctrl.name }}</h1>
+<div class="diff">
+  <h1>{{ $ctrl.leftSnap }} and {{ $ctrl.rightSnap }} diff</h1>
+
+  <table>
+    <thead>
+      <th>Hash</th>
+      <th>Arch</th>
+      <th>Name</th>
+      <th>Version</th>
+      <th class="border-left">Version</th>
+      <th>Name</th>
+      <th>Arch</th>
+      <th>Hash</th>
+    </thead>
+    <!-- [Arch, Name, Version, Hash] -->
+    <tr ng-repeat="diffItem in $ctrl.diffData">
+      <td>{{ diffItem.Left[3] }}</td>
+      <td>{{ diffItem.Left[0] }}</td>
+      <td>{{ diffItem.Left[1] }}</td>
+      <td align="right">{{ diffItem.Left[2] }}</td>
+      <td class="border-left">{{ diffItem.Right[2] }}</td>
+      <td>{{ diffItem.Right[1] }}</td>
+      <td>{{ diffItem.Right[0] }}</td>
+      <td>{{ diffItem.Right[3] }}</td>
+    </tr>
+  </table>
 </div>
