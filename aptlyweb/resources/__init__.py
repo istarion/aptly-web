@@ -7,5 +7,5 @@ pyptly_api = pyptly.Aptly(app.aptly_url)
 
 
 def error_check(result):
-    if isinstance(result, list) and 'error' in result[0]:
+    if isinstance(result, list) and len(result) > 0 and 'error' in result[0]:
         abort(422, error=result[0]['error'])

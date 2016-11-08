@@ -1,6 +1,6 @@
 from flask_restful import Resource, reqparse
 from flask_restful import abort
-from aptlyweb.resources import pyptly_api
+from aptlyweb.resources import pyptly_api, error_check
 
 class Snapshot(Resource):
     @staticmethod
@@ -36,6 +36,7 @@ class SnapshotsDiff(Resource):
     @staticmethod
     def get(left_item, right_item):
         result = pyptly_api.snapshots_diff(left_item, right_item)
+        error_check(result)
         for record in result:
             if record["Left"]:
                 record["Left"] = record["Left"].split(' ')
