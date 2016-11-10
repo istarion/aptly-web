@@ -44,41 +44,48 @@ class LocalRepo(Resource):
 class DiffWithSnapshot(Resource):
     @staticmethod
     def get(left_item, right_item):
-        left_snap = pyptly_api.create_snapshot_from_repo(left_item, Name='tmp_' + str(int(time.time()*1000)))
-        error_check(left_snap)
-        result = pyptly_api.snapshots_diff(left_snap["Name"], right_item)
-        error_check(result)
-        pyptly_api.delete_snapshot(left_snap["Name"])
-        for record in result:
-            if record["Left"]:
-                record["Left"] = record["Left"].split(' ')
-            else:
-                record["Left"] = [None, None, None]
-            if record["Right"]:
-                record["Right"] = record["Right"].split(' ')
-            else:
-                record["Right"] = [None, None, None]
+        try:
+            left_snap = pyptly_api.create_snapshot_from_repo(left_item, Name='tmp_' + str(int(time.time()*1000)))
+            error_check(left_snap)
+            result = pyptly_api.snapshots_diff(left_snap["Name"], right_item)
+            error_check(result)
+            for record in result:
+                if record["Left"]:
+                    record["Left"] = record["Left"].split(' ')
+                else:
+                    record["Left"] = [None, None, None]
+                if record["Right"]:
+                    record["Right"] = record["Right"].split(' ')
+                else:
+                    record["Right"] = [None, None, None]
+        finally:
+            if left_snap and isinstance(left_snap, dict):
+                pyptly_api.delete_snapshot(left_snap["Name"])
         return result
 
 
 class DiffWithRepo(Resource):
     @staticmethod
     def get(left_item, right_item):
-        left_snap = pyptly_api.create_snapshot_from_repo(left_item, Name='tmp_l_' + str(int(time.time()*1000)))
-        error_check(left_snap)
-        right_snap = pyptly_api.create_snapshot_from_repo(right_item, Name='tmp_r_' + str(int(time.time() * 1000)))
-        error_check(right_snap)
-        result = pyptly_api.snapshots_diff(left_snap["Name"], right_snap["Name"])
-        error_check(result)
-        pyptly_api.delete_snapshot(left_snap["Name"])
-        pyptly_api.delete_snapshot(right_snap["Name"])
-        for record in result:
-            if record["Left"]:
-                record["Left"] = record["Left"].split(' ')
-            else:
-                record["Left"] = [None, None, None]
-            if record["Right"]:
-                record["Right"] = record["Right"].split(' ')
-            else:
-                record["Right"] = [None, None, None]
+        try:
+            left_snap = pyptly_api.create_snapshot_from_repo(left_item, Name='tmp_l_' + str(int(time.time()*1000)))
+            right_snap = pyptly_api.create_snapshot_from_repo(right_item, Name='tmp_r_' + str(int(time.time() * 1000)))
+            error_check(left_snap)
+            error_check(right_snap)
+            result = pyptly_api.snapshots_diff(left_snap["Name"], right_snap["Name"])
+            error_check(result)
+            for record in result:
+                if record["Left"]:
+                    record["Left"] = record["Left"].split(' ')
+                else:
+                    record["Left"] = [None, None, None]
+                if record["Right"]:
+                    record["Right"] = record["Right"].split(' ')
+                else:
+                    record["Right"] = [None, None, None]
+        finally:
+            if left_snap and isinstance(left_snap, dict):
+                pyptly_api.delete_snapshot(left_snap["Name"])
+            if right_snap and isinstance(right_snap, dict):
+                pyptly_api.delete_snapshot(right_snap["Name"])
         return result

@@ -4,8 +4,9 @@ class SideBarController {
     this.name = 'sideBar';
 
     this.toggle = function () {
-      if ($mdMedia('lt-md'))
-      $mdSidenav('left').toggle();
+      if (!$mdMedia('gt-sm')) {
+        $mdSidenav('left').toggle();
+      }
     }
   }
 }
