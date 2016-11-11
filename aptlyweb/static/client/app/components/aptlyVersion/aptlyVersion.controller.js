@@ -4,7 +4,7 @@ class AptlyVersionController {
     'ngInject'
     var self = this;
     this.name = 'aptlyVersion';
-    this.version_resource = $resource('http://localhost:5001/version');
+    this.version_resource = $resource('http://localhost:5001/api/version');
     this.version = 'not yet!';
     this.version_resource.get().$promise.then( function(result) {
         self.version = result.Version;

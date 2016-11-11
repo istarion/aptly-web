@@ -1,6 +1,8 @@
 from flask import Flask
 from flask import make_response, jsonify
 from flask_cors import CORS
+from flask_sqlalchemy import SQLAlchemy
+from flask_security import SQLAlchemyUserDatastore, Security
 
 
 app = Flask(__name__, static_folder='static/dist/', static_url_path='')
@@ -18,10 +20,24 @@ with app.app_context():
     app.ini_config.read(config_path)
 
 app.aptly_url = app.ini_config.get('data_sources', 'aptly.url')
-app.db_url = app.ini_config.get('data_sources', 'db.url')
+app.config['SQLALCHEMY_DAYABASE_URI'] = app.ini_config.get('data_sources', 'db.url')
+
+db = SQLAlchemy(app)
 
 from aptlyweb.api import init_api
 from aptlyweb import views
+from aptlyweb.models.role import Role
+from aptlyweb.models.user import User
+
+user_datastore = SQLAlchemyUserDatastore(db, User, Role)
+secutiry = Security(app, user_datastore)
+
+
+@app.before_first_request
+def create_user():
+    db.create_all(app=app)
+    user_datastore.create_user(email='s.zavgorodniy@i-dgtl.ru', password='foobar')
+    db.session.commit()
 
 init_api()
 

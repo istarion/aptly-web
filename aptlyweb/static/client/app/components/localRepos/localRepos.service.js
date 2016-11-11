@@ -6,7 +6,7 @@ class LocalReposResource{
   constructor($resource, $mdToast) {
     'ngInject';
 
-    var data = $resource('http://localhost:5001/repos/:Name', {Name: '@Name'});
+    var data = $resource('http://localhost:5001/api/repos/:Name', {Name: '@Name'});
 
     return data;
   }

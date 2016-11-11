@@ -6,7 +6,7 @@ class SnapshotsResource{
   constructor($resource, $mdToast) {
     'ngInject';
 
-    var data = $resource('http://localhost:5001/snapshots/:Name', {Name: '@Name'});
+    var data = $resource('http://localhost:5001/api/snapshots/:Name', {Name: '@Name'});
 
     return data;
   }
