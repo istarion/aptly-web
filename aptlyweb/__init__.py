@@ -5,7 +5,7 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_security import SQLAlchemyUserDatastore, Security
 
 
-app = Flask(__name__, static_folder='static/dist/', static_url_path='')
+app = Flask(__name__, static_folder='static/dist/', static_url_path='', template_folder='templates/')
 
 from flask_ini import FlaskIni
 # from aptlyweb.resources import init_res
@@ -20,7 +20,7 @@ with app.app_context():
     app.ini_config.read(config_path)
 
 app.aptly_url = app.ini_config.get('data_sources', 'aptly.url')
-app.config['SQLALCHEMY_DAYABASE_URI'] = app.ini_config.get('data_sources', 'db.url')
+app.config['SQLALCHEMY_DATABASE_URI'] = app.ini_config.get('data_sources', 'db.url')
 
 db = SQLAlchemy(app)
 
@@ -33,11 +33,11 @@ user_datastore = SQLAlchemyUserDatastore(db, User, Role)
 secutiry = Security(app, user_datastore)
 
 
-@app.before_first_request
-def create_user():
-    db.create_all(app=app)
-    user_datastore.create_user(email='s.zavgorodniy@i-dgtl.ru', password='foobar')
-    db.session.commit()
+# @app.before_first_request
+# def create_user():
+#     db.create_all(app=app)
+#     user_datastore.create_user(email='s.zavgorodniy@i-dgtl.ru', password='foobar')
+#     db.session.commit()
 
 init_api()
 

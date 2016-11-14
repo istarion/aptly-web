@@ -4,3 +4,7 @@
 .top-header .md-button {
   min-width: 0;
 }
+.top-header .logout-ref {
+  position: absolute;
+  right: 10px;
+}
