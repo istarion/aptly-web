@@ -1,0 +1,25 @@
+{% from '_macros.html' import render_field %}
+
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="page-header">
+  <h1>Log In</h1>
+</div>
+<div class="row content">
+  <div class="span4 offset1">
+    <form class="well" action="{{ url_for('security.login') }}" method="POST">
+      {{ form.hidden_tag() }}
+      {{ render_field(form.email) }}
+      {{ render_field(form.password) }}
+      <label class="checkbox">{{ form.remember()|safe }} Remember me</label>
+      <button type="submit" class="btn btn-primary btn-large">Login</button>
+    </form>
+  </div>
+    </div>
+</body>
+</html>
