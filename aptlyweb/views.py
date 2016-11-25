@@ -1,4 +1,4 @@
-from flask import render_template, request, current_app
+from flask import render_template, request, current_app, render_template_string
 from flask import send_from_directory, redirect, url_for
 from aptlyweb import app
 from flask_security import login_required, login_user
@@ -8,28 +8,35 @@ from flask_security import current_user
 from flask import flash
 from webargs.flaskparser import parser
 from webargs import fields
-from flask_ldap3_login import LDAP3LoginManager
 from flask_ldap3_login.forms import LDAPLoginForm
 
 
+@app.ldap_manager.save_user
+def save_user(dn, username, data, memberships):
+    user = app.user_datastore.create_user(dn=dn, email='username', password='', )
+    return user
+
 @app.route('/auth', methods=['POST', 'GET'])
 def auth():
-    error = None
     if current_user.is_authenticated or current_app.login_manager._login_disabled:
         return redirect(url_for('/'))
-    if request.method == 'POST':
-        form_data = parser.parse(
-                {
-                    'login': fields.Str(),
-                    'password': fields.Str()
-                }
-        )
-        try:
-            user = LdapAuthManager.authenticate(form_data.get('login'), form_data.get('password'))
-            login_user(user)
-            return redirect(url_for('index'))
+    template = """
+    {{ get_flashed_messages() }}
+    {{ form.errors }}
+    <form method="POST">
+        <label>Username{{ form.username() }}</label>
+        <label>Password{{ form.password() }}</label>
+        {{ form.submit() }}
+        {{ form.hidden_tag() }}
+    </form>
+    """
+    form = LDAPLoginForm()
 
-    return render_template('auth.html', error=error), 401
+    if form.validate_on_submit():
+        login_user(form.user)
+        return redirect('/')
+
+    return render_template_string(template, form=form)
 
 
 @app.route('/')
