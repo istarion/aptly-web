@@ -29,8 +29,10 @@ app.config['LDAP_USER_DN'] = app.ini_config.get('ldap', 'ldap.user_dn')
 app.config['LDAP_GROUP_DN'] = app.ini_config.get('ldap', 'ldap.group_dn')
 app.config['LDAP_USER_RDN_ATTR'] = app.ini_config.get('ldap', 'ldap.user_rdn_attr')
 app.config['LDAP_USER_LOGIN_ATTR'] = app.ini_config.get('ldap', 'ldap.user_login_attr')
+app.config['SECURITY_USER_IDENTITY_ATTRIBUTES'] = app.ini_config.get('ldap', 'security.login_attr')
 app.config['LDAP_BIND_USER_DN'] = app.ini_config.get('ldap', 'ldap.bind_user_dn')
 app.config['LDAP_BIND_USER_PASSWORD'] = app.ini_config.get('ldap', 'ldap.bind_user_password')
+app.config['LDAP_BIND_DIRECT_CREDENTIALS'] = True
 
 db = SQLAlchemy(app)
 
