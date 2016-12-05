@@ -3,7 +3,9 @@ from flask import make_response, jsonify
 from flask_cors import CORS
 from flask_sqlalchemy import SQLAlchemy
 from flask_security import SQLAlchemyUserDatastore, Security
+from flask_login import LoginManager
 from flask_ldap3_login import LDAP3LoginManager
+import logging
 
 
 app = Flask(__name__, static_folder='static/dist/', static_url_path='', template_folder='templates/')
@@ -36,7 +38,9 @@ app.config['LDAP_BIND_DIRECT_CREDENTIALS'] = True
 
 db = SQLAlchemy(app)
 
-app.ldap_manager = LDAP3LoginManager(app)
+app.login_manager = LoginManager(app=app)
+app.ldap_manager = LDAP3LoginManager(app=app)
+
 
 from aptlyweb.api import init_api
 from aptlyweb import views
@@ -46,6 +50,8 @@ from aptlyweb.models.user import User
 app.user_datastore = SQLAlchemyUserDatastore(db, User, Role)
 secutiry = Security(app, app.user_datastore)
 
+FORMAT = '%(asctime)-15s %(message)s'
+logging.basicConfig(format=FORMAT)
 
 # @app.before_first_request
 # def create_user():
@@ -53,6 +59,18 @@ secutiry = Security(app, app.user_datastore)
 #     app.user_datastore.create_user(email='s.zavgorodniy@i-dgtl.ru', password='foobar')
 #     db.session.commit()
 
+# @app.before_first_request
+# def create_role():
+#     db.create_all(app=app)
+#     app.user_datastore.create_role(name='admin', description='Repo administrator')
+#     db.session.commit()
+
+# @app.before_first_request
+# def add_role():
+#     db.create_all(app=app)
+#     app.user_datastore.add_role_to_user(app.user_datastore.find_user(email='s.zavgorodniy@i-dgtl.ru'), app.user_datastore.find_role('admin'))
+#     db.session.commit()
+#
 init_api()
 
 @app.errorhandler(404)

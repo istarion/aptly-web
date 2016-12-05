@@ -107,7 +107,6 @@
 
 
         #login-form input[type="password"] {
-            border-top: none;
             border-radius: 0px 0px 3px 3px;
         }
 
@@ -166,7 +165,7 @@
         <fieldset>
 
             <form method="POST">
-                <label>LDAP E-mail: {{ form.username() }}</label>
+                <label>LDAP email: {{ form.username() }}</label>
                 {% if form.errors['username'] %}
                 <p class="error">
                     {{ form.errors['username'][0] }}

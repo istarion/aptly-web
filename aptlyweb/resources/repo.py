@@ -1,8 +1,10 @@
 import time
-
+from flask import request
 from flask_restful import Resource, reqparse
 from flask_restful import abort
 from aptlyweb.resources import pyptly_api, error_check
+from flask_security import login_required, roles_accepted
+from flask_security import current_user
 
 
 class LocalRepo(Resource):
@@ -34,12 +36,16 @@ class LocalRepo(Resource):
             abort(422, error=result[0]['error'])
 
     @staticmethod
+    @roles_accepted('admin')
     def delete(name):
+        print(current_user)
+        print(request)
         result = pyptly_api.delete_local_repo(name)
         if isinstance(result, dict) or 'error' not in result[0]:
             return {'result': 'Repository deleted'}
         else:
             abort(422, error=result[0]['error'])
+
 
 class DiffWithSnapshot(Resource):
     @staticmethod
