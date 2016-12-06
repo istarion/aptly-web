@@ -26,7 +26,7 @@ class DiffRepoRepoResource{
   constructor($resource) {
     'ngInject';
 
-    var data = $resource('http://localhost:5001/repos/diff_repo/:leftItem/:rightItem');
+    var data = $resource('http://localhost:5001/api/repos/diff_repo/:leftItem/:rightItem');
 
     return data;
   }

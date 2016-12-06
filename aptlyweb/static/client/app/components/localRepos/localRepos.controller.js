@@ -9,6 +9,7 @@ class LocalReposController {
     this.name = 'localRepos';
     this.LocalReposResource = LocalReposResource;
     this.local_repos = LocalReposResource.query();
+    this.$mdToast = $mdToast;
 
     this.query = function () {
       self.local_repos = LocalReposResource.query();
@@ -66,7 +67,7 @@ class LocalReposController {
         .ok('Yes')
         .cancel('No');
       $mdDialog.show(confirmDialog).then(function () { //SUCCESS
-        self.deleteRepo(repo);
+        self.deleteRepo(repo, $mdToast);
       })
     };
 
@@ -130,8 +131,11 @@ class LocalReposController {
     );
   }
 
-  deleteRepo(repo) {
-    repo.$delete(repo.Name, this.query);
+  deleteRepo(repo, $mdToast) {
+    repo.$delete(repo.Name, this.query, function(resp) {
+      let toast = $mdToast.simple().textContent(resp.data).position('top right').hideDelay(7000);
+      $mdToast.show(toast);
+    });
   }
 }
 
