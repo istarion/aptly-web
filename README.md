@@ -2,6 +2,18 @@
 
 > Currently under development. 
 
+## How to build wheel:
+```
+python setup.py bdist_wheel
+```
+
+## How to install from wheel:
+```
+virtualenv -p python3 venv
+source ./venv/bin/activate
+
+```
+
 Frontend: [Angular](https://angularjs.org), [ES6](https://git.io/es6features), [Webpack](http://webpack.github.io/) 
 and [Angular Material](material.angularjs.org) 
 
