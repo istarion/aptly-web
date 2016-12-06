@@ -3,10 +3,10 @@
  */
 
 class SnapshotsResource{
-  constructor($resource, $mdToast) {
+  constructor($resource, $location) {
     'ngInject';
 
-    var data = $resource('http://localhost:5001/api/snapshots/:Name', {Name: '@Name'});
+    var data = $resource('http://' + $location.host() + ':' + $location.port() + '/api/snapshots/:Name', {Name: '@Name'});
 
     return data;
   }

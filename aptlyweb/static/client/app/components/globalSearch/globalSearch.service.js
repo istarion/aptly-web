@@ -3,20 +3,20 @@
  */
 
 class SearchResource{
-  constructor($resource) {
+  constructor($resource, $location) {
     'ngInject';
 
-    var data = $resource('http://localhost:5001/api/search/:query');
+    var data = $resource('http://' + $location.host() + ':' + $location.port() + '/api/search/:query');
 
     return data;
   }
 }
 
 class AdvancedSearchResource{
-  constructor($resource) {
+  constructor($resource, $location) {
     'ngInject';
 
-    var data = $resource('http://localhost:5001/api/advanced_search/:query');
+    var data = $resource('http://' + $location.host() + ':' + $location.port() + '/api/advanced_search/:query');
 
     return data;
   }

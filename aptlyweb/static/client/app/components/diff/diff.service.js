@@ -3,30 +3,30 @@
  */
 
 class DiffSnapSnapResource{
-  constructor($resource) {
+  constructor($resource, $location) {
     'ngInject';
 
-    var data = $resource('http://localhost:5001/api/snapshots/diff/:leftItem/:rightItem');
+    var data = $resource('http://' + $location.host() + ':' + $location.port() + '/api/snapshots/diff/:leftItem/:rightItem');
 
     return data;
   }
 }
 
 class DiffRepoSnapResource{
-  constructor($resource) {
+  constructor($resource, $location) {
     'ngInject';
 
-    var data = $resource('http://localhost:5001/api/repos/diff_snap/:leftItem/:rightItem');
+    var data = $resource('http://' + $location.host() + ':' + $location.port() + '/api/repos/diff_snap/:leftItem/:rightItem');
 
     return data;
   }
 }
 
 class DiffRepoRepoResource{
-  constructor($resource) {
+  constructor($resource, $location) {
     'ngInject';
 
-    var data = $resource('http://localhost:5001/api/repos/diff_repo/:leftItem/:rightItem');
+    var data = $resource('http://' + $location.host() + ':' + $location.port() + '/api/repos/diff_repo/:leftItem/:rightItem');
 
     return data;
   }

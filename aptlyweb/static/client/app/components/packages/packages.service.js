@@ -3,10 +3,10 @@
  */
 
 class PackagesResource{
-  constructor($resource, $mdToast) {
+  constructor($resource, $location) {
     'ngInject';
 
-    var data = $resource('http://localhost:5001/api/:type/:srcName/packages');
+    var data = $resource('http://' + $location.host() + ':' + $location.port() + '/api/:type/:srcName/packages');
 
     return data;
   }
