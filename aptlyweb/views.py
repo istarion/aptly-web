@@ -31,7 +31,7 @@ def load_user(id):
 @app.route('/')
 @login_required
 def index():
-    print(current_user)
+    print(session)
     return render_template('index.html')
     # return app.send_static_file('index.html')
 
@@ -39,8 +39,7 @@ def index():
 @app.route('/login', methods=['POST', 'GET'])
 def login():
     if current_user.is_authenticated or current_app.login_manager._login_disabled:
-
-        return render_template('index.html')
+        return redirect('/')
     form = LDAPLoginForm()
 
     if form.validate_on_submit():

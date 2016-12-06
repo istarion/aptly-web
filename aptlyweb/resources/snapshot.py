@@ -1,8 +1,12 @@
 from flask_restful import Resource, reqparse
 from flask_restful import abort
 from aptlyweb.resources import pyptly_api, error_check
+from flask_security import login_required
+
 
 class Snapshot(Resource):
+    method_decorators = [login_required]
+
     @staticmethod
     def get(name=''):
         if name == '':
@@ -33,6 +37,8 @@ class Snapshot(Resource):
 
 
 class SnapshotsDiff(Resource):
+    method_decorators = [login_required]
+
     @staticmethod
     def get(left_item, right_item):
         result = pyptly_api.snapshots_diff(left_item, right_item)

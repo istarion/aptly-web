@@ -1,5 +1,5 @@
 import time
-from flask import request
+from flask import request, session
 from flask_restful import Resource, reqparse
 from flask_restful import abort
 from aptlyweb.resources import pyptly_api, error_check
@@ -8,6 +8,8 @@ from flask_security import current_user
 
 
 class LocalRepo(Resource):
+    method_decorators = [login_required]
+
     @staticmethod
     def get(name=''):
         if name == '':
@@ -18,6 +20,7 @@ class LocalRepo(Resource):
             return pyptly_api.show_local_repo(name)
 
     @staticmethod
+    @roles_accepted('admin')
     def post(name=''):
         parser = reqparse.RequestParser()
         parser.add_argument('Name')
@@ -38,8 +41,6 @@ class LocalRepo(Resource):
     @staticmethod
     @roles_accepted('admin')
     def delete(name):
-        print(current_user)
-        print(request)
         result = pyptly_api.delete_local_repo(name)
         if isinstance(result, dict) or 'error' not in result[0]:
             return {'result': 'Repository deleted'}
@@ -48,6 +49,8 @@ class LocalRepo(Resource):
 
 
 class DiffWithSnapshot(Resource):
+    method_decorators = [login_required]
+
     @staticmethod
     def get(left_item, right_item):
         try:
@@ -71,6 +74,8 @@ class DiffWithSnapshot(Resource):
 
 
 class DiffWithRepo(Resource):
+    method_decorators = [login_required]
+
     @staticmethod
     def get(left_item, right_item):
         try:
