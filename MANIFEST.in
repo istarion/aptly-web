@@ -1,4 +1,3 @@
-include aptlyweb/config_default.ini
 recursive-include aptlyweb/templates *
 recursive-include aptlyweb/static/dist *
 prune aptlyweb/config.ini

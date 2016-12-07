@@ -31,7 +31,6 @@ def load_user(id):
 @app.route('/')
 @login_required
 def index():
-    print(session)
     return render_template('index.html')
     # return app.send_static_file('index.html')
 
