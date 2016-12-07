@@ -24,6 +24,7 @@ SECRET_KEY = 'ChangeThis'
 APTLY_URL = 'localhost:8080'
 
 SQLALCHEMY_DATABASE_URI = 'postgresql://postgres:foobar@localhost/aptlyweb'
+SQLALCHEMY_TRACK_MODIFICATIONS = True
 
 SECURITY_USER_IDENTITY_ATTRIBUTES = 'email'
 

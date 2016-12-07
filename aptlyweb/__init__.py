@@ -32,7 +32,7 @@ app.user_datastore = SQLAlchemyUserDatastore(db, User, Role)
 secutiry = Security(app, app.user_datastore)
 
 FORMAT = '%(asctime)-15s %(message)s'
-logging.basicConfig(format=FORMAT, level='ERROR')
+logging.basicConfig(format=FORMAT, level='DEBUG')
 
 # @app.before_first_request
 # def create_role():
