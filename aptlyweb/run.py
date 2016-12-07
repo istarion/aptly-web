@@ -14,6 +14,7 @@ def init_db():
     db.create_all(app=application)
     application.user_datastore.create_role(name='admin', description='Aptly administrator')
     db.session.commit()
+    print('Done!')
     exit(0)
 
 
@@ -30,6 +31,7 @@ def set_admin():
     application.user_datastore.add_role_to_user(application.user_datastore.find_user(email=email),
                                                 application.user_datastore.find_role('admin'))
     db.session.commit()
+    print('Done!')
     exit(0)
 
 
