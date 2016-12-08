@@ -1,0 +1,139 @@
+<div>
+  <h1>Global package search</h1>
+  <div class="search-container">
+    <form ng-submit="$ctrl.find()">
+      <md-input-container flex>
+        <label>Search query</label>
+        <input type="text" ng-model="$ctrl.query">
+      </md-input-container>
+      <md-checkbox ng-model="$ctrl.advanced">Advanced search</md-checkbox>
+      <md-button class="md-icon-button" ng-click="$ctrl.showAdvancedHelp($event)">
+        <md-icon> help</md-icon>
+      </md-button>
+      <md-button class="md-raised md-primary" ng-click="$ctrl.find()">Find!</md-button>
+    </form>
+
+  </div>
+
+  <table class="diff" ng-if="$ctrl.packages">
+    <tr>
+      <th>Container type</th>
+      <th>Container name</th>
+      <th>Packages</th>
+    </tr>
+    <tr ng-repeat="container in $ctrl.packages">
+      <td>{{ container.container_type }}</td>
+      <td>{{ container.container_name }}</td>
+      <td>
+        <md-list>
+          <md-list-item ng-repeat="pack in container.packages">
+            <p>{{pack}}</p>
+          </md-list-item>
+        </md-list>
+      </td>
+    </tr>
+  </table>
+
+
+  <div style="visibility: hidden">
+    <div class="md-dialog-container" id="helpDialog">
+      <md-dialog layout-padding>
+        <h2>Advanced search help</h2>
+        <p>Package query syntax almost matches <code>reprepro</code> query language.
+          Query consists of the following simple terms:</p>
+
+        <ul>
+          <li><strong>direct package reference</strong>: reference to exaclty one package.
+            Format is identical to the way aptly lists packages in show commands
+            with <code>-with-packages</code> flag: <code>name_version_arch</code>, e.g.:
+            <code>libmysqlclient18_5.5.35-rel33.0-611.squeeze_amd64</code></li>
+          <li><strong>dependency condition</strong>: syntax follows Debian dependency
+            specification: <code>package_name</code> followed by optional version
+            specification and architecture limit, e.g: <code>mysql-client (&gt;= 3.6)</code>.
+          </li>
+          <li><strong>query against package fields</strong>: syntax is the same as for dependency
+            conditions, but instead of package name field name is used, e.g:
+            <code>Priority (optional)</code>.
+          </li>
+        </ul>
+
+        <p>Supported fields:</p>
+
+        <ul>
+          <li>all field names from Debian package control files are supported
+            except for <code>Filename</code>, <code>MD5sum</code>, <code>SHA1</code>, <code>SHA256</code>,
+            <code>Size</code>, <code>Files</code>,
+            <code>Checksums-SHA1</code>, <code>Checksums-SHA256</code>.
+          </li>
+          <li><code>$Source</code> is a name of source package (for binary packages)</li>
+          <li><code>$SourceVersion</code> is a version of source package</li>
+          <li><code>$Architecture</code> is <code>Architecture</code> for binary packages and <code>source</code>
+            for source packages, when matching with equal (<code>=</code>) operator,
+            package with <code>any</code> architecture matches all architectures but
+            <code>source</code>.
+          </li>
+          <li><code>$Version</code> has the same value as <code>Version</code>, but comparison operators
+            use Debian version precedence rules
+          </li>
+          <li><code>$PackageType</code> is <code>deb</code> for binary packages, <code>udeb</code> for .udeb packages
+            and <code>source</code> for source packages
+          </li>
+        </ul>
+
+        <p>Operators:</p>
+
+        <ul>
+          <li><code>=</code>: strict match, default operator is no operator is given</li>
+          <li><code>&gt;=</code>, <code>&lt;=</code>, <code>=</code>, <code>&gt;&gt;</code> (strictly greater), <code>
+            &lt;&lt;</code> (strictly less):
+            lexicographical comparison for all fields and special rules when
+            comparing package versions
+          </li>
+          <li><code>%</code>: pattern matching, like shell patterns, supported special
+            symbols are: <code>[^]?*</code>, e.g.: <code>$Version (% 3.5-*)</code></li>
+          <li><code>~</code>: regular expression matching, e.g.: <code>Name (~ .*-dev)</code></li>
+        </ul>
+
+        <p>Simple terms could be combined into more complex queries using operators
+          <code>,</code> (and), <code>|</code> (or) and <code>!</code> (not), parentheses <code>()</code> are used to
+          change
+          operator precedence. Match value could be enclosed in single (<code>'</code>) or
+          double (<code>&quot;</code>) quotes if required to resolve ambiguity, quotes inside
+          quoted string should escaped with slash (<code>\</code>).</p>
+
+        <p>Examples:</p>
+
+        <ul>
+          <li><code>mysql-client</code>: matches package mysql-client of any version and
+            architecture (including source), also matches packages that
+            <code>Provide:</code> <code>mysql-client</code>.
+          </li>
+          <li><code>mysql-client (&gt;= 3.6)</code>: matches package mysql-client with version
+            greater or equal to 3.6. Valid operators for version are: <code>&gt;=</code>,
+            <code>&lt;=</code>, <code>=</code>, <code>&gt;&gt;</code> (strictly greater), <code>&lt;&lt;</code>
+            (strictly less).
+          </li>
+          <li><code>mysql-client {i386}</code>: matches package <code>mysql-client</code> on
+            architecture <code>i386</code>, architecture <code>all</code> matches all architectures
+            but source.
+          </li>
+          <li><code>mysql-client (&gt;= 3.6) {i386}</code>: version and architecture conditions
+            combined.
+          </li>
+          <li><code>libmysqlclient18_5.5.35-rel33.0-611.squeeze_amd64</code>: direct package
+            reference.
+          </li>
+          <li><code>$Source (nginx)</code>: all binary packages with <code>nginx</code> as source
+            package.
+          </li>
+          <li><code>!Name (~ .*-dev), mail-transport, $Version (&gt;= 3.5)</code>: matches all
+            packages that provide <code>mail-transport</code> with name that has no suffix
+            <code>-dev</code> and with version greater or equal to <code>3.5</code>.
+          </li>
+        </ul>
+
+      </md-dialog>
+    </div>
+  </div>
+
+</div>

@@ -1,9 +1,8 @@
-import angular from 'angular';
 import EditRepoComponent from './editRepo/editRepo.component';
 import DiffDialogComponent from '../snapshots/diffDialog/diffDialog.component';
 
 class LocalReposController {
-  constructor($mdDialog, $mdToast, LocalReposResource, SnapshotsResource) {
+  constructor($mdDialog, $mdToast, LocalReposResource, SnapshotsResource, AddPkgByKeyResource, DelPkgByKeyResource) {
     'ngInject';
     var self = this;
     this.name = 'localRepos';
@@ -116,7 +115,39 @@ class LocalReposController {
         var answer = self.createSnapshot(repo.Name, result, SnapshotsResource, $mdToast);
 
       });
-    }
+    };
+
+    this.addPkgByKeyDialog = function (event, repo) {
+      var self = this;
+      var addDialog = $mdDialog.prompt()
+        .title('Enter package key')
+        .textContent('Enter key of package like "Pall ifree-imsimonitoring 1.2.3 b43b79691fa898c2"')
+        .placeholder('Package key')
+        .ariaLabel('Package key')
+        .targetEvent(event)
+        .ok('Add package')
+        .cancel('Cancel');
+      $mdDialog.show(addDialog).then(function (result) {
+        var answer = self.addPkgByKey(repo.Name, result, AddPkgByKeyResource, $mdToast);
+
+      });
+    };
+
+    this.delPkgByKeyDialog = function (event, repo) {
+      var self = this;
+      var delDialog = $mdDialog.prompt()
+        .title('Enter package key')
+        .textContent('Enter key of package like "Pall ifree-imsimonitoring 1.2.3 b43b79691fa898c2"')
+        .placeholder('Package key')
+        .ariaLabel('Package key')
+        .targetEvent(event)
+        .ok('Delete package')
+        .cancel('Cancel');
+      $mdDialog.show(delDialog).then(function (result) {
+        var answer = self.delPkgByKey(repo.Name, result, DelPkgByKeyResource, $mdToast);
+
+      });
+    };
   };
 
   createSnapshot(repo_name, snapshot_name, SnapshotsResource, $mdToast) {
@@ -126,6 +157,30 @@ class LocalReposController {
         $mdToast.show(toast);
       }, function (result) {
         var toast = $mdToast.simple().textContent(result.data.error).position('top right').hideDelay(3000);
+        $mdToast.show(toast);
+      }
+    );
+  }
+
+  addPkgByKey(repo_name, package_key, AddPkgByKeyResource, $mdToast) {
+    AddPkgByKeyResource.save({Name: repo_name, PackageRefs: [package_key]}, function (result) {
+        console.log(result);
+        var toast = $mdToast.simple().textContent(result).position('top right').hideDelay(3000);
+        $mdToast.show(toast);
+      }, function (result) {
+        var toast = $mdToast.simple().textContent(result).position('top right').hideDelay(3000);
+        $mdToast.show(toast);
+      }
+    );
+  }
+
+  delPkgByKey(repo_name, package_key, DelPkgByKeyResource, $mdToast) {
+    DelPkgByKeyResource.save({Name: repo_name, PackageRefs: [package_key]}, function (result) {
+        console.log(result);
+        var toast = $mdToast.simple().textContent(result).position('top right').hideDelay(3000);
+        $mdToast.show(toast);
+      }, function (result) {
+        var toast = $mdToast.simple().textContent(result).position('top right').hideDelay(3000);
         $mdToast.show(toast);
       }
     );

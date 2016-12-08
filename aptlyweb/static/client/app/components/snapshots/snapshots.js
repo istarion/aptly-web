@@ -6,7 +6,7 @@ import SnapshotsDiff from '../diff/diff';
 
 import snapshotsComponent from './snapshots.component';
 import SnapshotsResource from './snapshots.service';
-import LocalReposResource from '../localRepos/localRepos.service'
+import {LocalReposResource} from '../localRepos/localRepos.service'
 
 let snapshotsModule = angular.module('snapshots', [
   uiRouter,

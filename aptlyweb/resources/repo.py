@@ -105,14 +105,24 @@ class DiffWithRepo(Resource):
 class AddPackageByKey(Resource):
     @staticmethod
     @login_required
-    def get(name, package_refs):
-        result = pyptly_api.add_pkg_bykey(name, PackageRefs=package_refs)
+    @roles_accepted('admin')
+    def post(name):
+        parser = reqparse.RequestParser()
+        parser.add_argument('PackageRefs')
+        args = parser.parse_args()
+        args['PackageRefs'] = args['PackageRefs'].split(',')
+        result = pyptly_api.add_pkg_bykey(name, **args)
         return result
 
 
 class DelPackageByKey(Resource):
     @staticmethod
     @login_required
-    def get(name, package_refs):
-        result = pyptly_api.delete_pkg_bykey(name, PackageRefs=package_refs)
+    @roles_accepted('admin')
+    def post(name):
+        parser = reqparse.RequestParser()
+        parser.add_argument('PackageRefs')
+        args = parser.parse_args()
+        args['PackageRefs'] = args['PackageRefs'].split(',')
+        result = pyptly_api.delete_pkg_bykey(name, **args)
         return result

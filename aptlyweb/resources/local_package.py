@@ -13,3 +13,11 @@ class PackageList(Resource):
         parser.add_argument('q')
         args = parser.parse_args()
         return pyptly_api.show_repo_packages(name, format='details', **args)
+
+
+class Package(Resource):
+    method_decorators = [login_required]
+
+    @staticmethod
+    def get(key):
+        return pyptly_api.show_pkg_bykey(key)

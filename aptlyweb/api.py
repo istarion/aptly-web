@@ -4,7 +4,7 @@ from aptlyweb import app
 from aptlyweb.resources.aptly import AptlyVersion
 from aptlyweb.resources.repo import LocalRepo, DiffWithSnapshot, DiffWithRepo, AddPackageByKey, DelPackageByKey
 from aptlyweb.resources.snapshot import Snapshot, SnapshotsDiff
-from aptlyweb.resources.local_package import PackageList
+from aptlyweb.resources.local_package import PackageList, Package
 from aptlyweb.resources.snapshot_package import SnapshotPackages
 from aptlyweb.resources.package_search import PackageSearch, PackageAdvancedSearch
 
@@ -17,7 +17,8 @@ def init_api():
     # Repos api
     api.add_resource(LocalRepo, '/repos/', endpoint='local_repos')
     api.add_resource(LocalRepo, '/repos/<string:name>', endpoint='local_repo')
-    api.add_resource(AddPackageByKey, '/repos/<string:name>/add_pkg/<string:package_refs>')
+    api.add_resource(AddPackageByKey, '/repos/<string:name>/add_pkg')
+    api.add_resource(DelPackageByKey, '/repos/<string:name>/del_pkg')
 
     api.add_resource(Snapshot, '/snapshots/', endpoint='snapshots')
     api.add_resource(Snapshot, '/snapshots/<string:name>', endpoint='snapshot')
@@ -25,6 +26,7 @@ def init_api():
     api.add_resource(PackageList, '/repos/<string:name>/packages', endpoint='local_packages')
     api.add_resource(SnapshotPackages, '/snapshots/<string:name>/packages', endpoint='snapshot_packages')
 
+    api.add_resource(Package, '/package/<string:key>')
     api.add_resource(PackageSearch, '/search/<string:query>', endpoint='search_packages')
     api.add_resource(PackageAdvancedSearch, '/advanced_search/<string:query>', endpoint='advanced_search_packages')
 
