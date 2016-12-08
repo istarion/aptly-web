@@ -7,6 +7,7 @@ from aptlyweb.resources.snapshot import Snapshot, SnapshotsDiff
 from aptlyweb.resources.local_package import PackageList, Package
 from aptlyweb.resources.snapshot_package import SnapshotPackages
 from aptlyweb.resources.package_search import PackageSearch, PackageAdvancedSearch
+from aptlyweb.resources.uploads import Upload
 
 
 def init_api():
@@ -33,6 +34,8 @@ def init_api():
     api.add_resource(SnapshotsDiff, '/snapshots/diff/<string:left_item>/<string:right_item>', endpoint='snapshots_diff')
     api.add_resource(DiffWithSnapshot, '/repos/diff_snap/<string:left_item>/<string:right_item>', endpoint='repo_snap_diff')
     api.add_resource(DiffWithRepo, '/repos/diff_repo/<string:left_item>/<string:right_item>', endpoint='repo_srepo_diff')
+
+    api.add_resource(Upload, '/upload')
 
 
 

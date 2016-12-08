@@ -1,0 +1,16 @@
+global-search .search-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding-left: 1em;
+  padding-right: 1em;
+}
+global-search .md-errors-spacer {
+  min-height: 0 !important;
+}
+global-search md-list {
+  padding: 0;
+}
+#helpDialog md-dialog {
+  padding: 2em;
+}

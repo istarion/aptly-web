@@ -1,0 +1,7 @@
+upload {
+  color: #000;
+}
+upload .upload-block {
+  display: flex;
+  flex-direction: row;
+}

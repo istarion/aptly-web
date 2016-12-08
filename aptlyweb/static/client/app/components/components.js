@@ -5,6 +5,7 @@ import GlobalSearch from './globalSearch/globalSearch'
 import LocalRepos from './localRepos/localRepos';
 import Snapshots from './snapshots/snapshots';
 import Packages from './packages/packages';
+import Upload from './upload/upload'
 
 let componentModule = angular.module('app.components', [
   About,
@@ -12,7 +13,8 @@ let componentModule = angular.module('app.components', [
   GlobalSearch,
   LocalRepos,
   Snapshots,
-  Packages
+  Packages,
+  Upload
 ])
 
 .name;
