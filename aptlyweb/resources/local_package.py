@@ -4,7 +4,7 @@ from aptlyweb.resources import pyptly_api
 from flask_security import login_required
 
 
-class LocalPackages(Resource):
+class PackageList(Resource):
     method_decorators = [login_required]
 
     @staticmethod

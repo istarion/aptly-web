@@ -100,3 +100,19 @@ class DiffWithRepo(Resource):
             if right_snap and isinstance(right_snap, dict):
                 pyptly_api.delete_snapshot(right_snap["Name"])
         return result
+
+
+class AddPackageByKey(Resource):
+    @staticmethod
+    @login_required
+    def get(name, package_refs):
+        result = pyptly_api.add_pkg_bykey(name, PackageRefs=package_refs)
+        return result
+
+
+class DelPackageByKey(Resource):
+    @staticmethod
+    @login_required
+    def get(name, package_refs):
+        result = pyptly_api.delete_pkg_bykey(name, PackageRefs=package_refs)
+        return result
