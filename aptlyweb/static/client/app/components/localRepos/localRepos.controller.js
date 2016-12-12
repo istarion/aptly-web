@@ -1,5 +1,6 @@
 import EditRepoComponent from './editRepo/editRepo.component';
 import DiffDialogComponent from '../snapshots/diffDialog/diffDialog.component';
+import UploadedPackagesComponent from './uploadedPackagesDialog/uploadedPackagesDialog.component'
 
 class LocalReposController {
   constructor($mdDialog, $mdToast, LocalReposResource, SnapshotsResource, AddPkgByKeyResource, DelPkgByKeyResource) {
@@ -114,6 +115,25 @@ class LocalReposController {
       $mdDialog.show(snapshotDialog).then(function (result) {
         var answer = self.createSnapshot(repo.Name, result, SnapshotsResource, $mdToast);
 
+      });
+    };
+
+    this.addPkgFromUpload = function (event, repo) {
+      var addDialog = angular.extend(UploadedPackagesComponent, {
+        parent: angular.element(document.body),
+        targetEvent: event,
+        clickOutsideToClose: true,
+        fullscreen: true,
+        locals: {
+          repo: repo
+        }
+      });
+      $mdDialog.show(addDialog).then(function (answer) {
+      }, function (fail_answer) {
+        if (fail_answer && fail_answer.data && fail_answer.data.error) {
+          var toast = $mdToast.simple().textContent(fail_answer.data.error).position('top right').hideDelay(3000);
+        }
+        $mdToast.show(toast);
       });
     };
 

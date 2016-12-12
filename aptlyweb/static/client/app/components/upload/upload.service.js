@@ -9,7 +9,8 @@ class UploadPackageResource {
         create: {
             method: "POST",
             transformRequest: angular.identity,
-            headers: { 'Content-Type': undefined }
+            headers: { 'Content-Type': undefined },
+            isArray: true
         }
     });
 

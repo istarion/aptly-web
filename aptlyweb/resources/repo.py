@@ -126,3 +126,13 @@ class DelPackageByKey(Resource):
         args['PackageRefs'] = args['PackageRefs'].split(',')
         result = pyptly_api.delete_pkg_bykey(name, **args)
         return result
+
+
+class AddPackageFromUpload(Resource):
+    @staticmethod
+    @login_required
+    @roles_accepted('admin')
+    def post(name):
+        parser = reqparse.RequestParser()
+        parser.add_argument('filename')
+        result = pyptly_api.add_uploaded_pkg(name, 'web-upload', **args)

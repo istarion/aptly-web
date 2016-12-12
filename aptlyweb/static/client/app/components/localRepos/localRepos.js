@@ -5,10 +5,12 @@ import ngMaterial from 'angular-material';
 import localReposComponent from './localRepos.component';
 import {LocalReposResource, AddPkgByKeyResource, DelPkgByKeyResource} from './localRepos.service';
 import SnapshotsResource from '../snapshots/snapshots.service';
+import UploadedPackagesDialog from './uploadedPackagesDialog/uploadedPackagesDialog'
 
 let localReposModule = angular.module('localRepos', [
   uiRouter,
   ngMaterial,
+  UploadedPackagesDialog
 ])
 
   .component('localRepos', localReposComponent)

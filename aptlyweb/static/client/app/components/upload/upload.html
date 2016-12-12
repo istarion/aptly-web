@@ -5,4 +5,10 @@
     <md-button class="md-raised md-primary" ng-click="$ctrl.sendPackage($event)">Send package</md-button>
   </div>
 
+  <md-list>
+    <md-list-item ng-repeat="file in $ctrl.uploaded_list">
+      {{file}}
+    </md-list-item>
+  </md-list>
+
 </div>

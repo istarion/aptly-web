@@ -26,6 +26,20 @@ class AddPkgByKeyResource{
   }
 }
 
+class AddPkgFromUploadResource{
+    constructor($resource, $location) {
+    'ngInject';
+
+    var data = $resource('http://' + $location.host() + ':' + $location.port() + '/api/repos/:Name/add_from_upload/',
+      {
+        Name: '@Name',
+        filename: '@filename'
+      });
+
+    return data;
+  }
+}
+
 class DelPkgByKeyResource{
     constructor($resource, $location) {
     'ngInject';
@@ -40,5 +54,5 @@ class DelPkgByKeyResource{
   }
 }
 
-export {LocalReposResource, AddPkgByKeyResource, DelPkgByKeyResource};
+export {LocalReposResource, AddPkgByKeyResource, DelPkgByKeyResource, AddPkgFromUploadResource};
 

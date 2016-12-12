@@ -1,0 +1,28 @@
+<md-dialog class="editRepo">
+  <md-toolbar>
+    <div class="md-toolbar-tools">
+      <h2>Add package from upload</h2>
+      <span flex></span>
+      <md-button class="md-icon-button" ng-click="$ctrl.cancel()">
+        <md-icon aria-label="Close dialog">clear</md-icon>
+      </md-button>
+    </div>
+  </md-toolbar>
+  <md-dialog-content>
+    <div aria-label="Add package from upload">
+     {{$ctrl.name}}
+      <div flex="row">
+        <md-list>
+          <md-list-item ng-repeat="file in $ctrl.uploaded_list">
+            <md-button class="md-primary md-raised" ng-click="$ctrl.answer(file)">OK</md-button>
+          </md-list-item>
+        </md-list>
+      </div>
+      <div flex="row">
+        <md-button class="md-primary md-raised" ng-click="$ctrl.answer($ctrl.repo)">OK</md-button>
+      </div>
+
+    </div>
+  </md-dialog-content>
+
+</md-dialog>
