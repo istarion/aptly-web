@@ -6,6 +6,7 @@ import localReposComponent from './localRepos.component';
 import {LocalReposResource, AddPkgByKeyResource, DelPkgByKeyResource} from './localRepos.service';
 import SnapshotsResource from '../snapshots/snapshots.service';
 import UploadedPackagesDialog from './uploadedPackagesDialog/uploadedPackagesDialog'
+import {UploadPackageResource} from '../upload/upload.service'
 
 let localReposModule = angular.module('localRepos', [
   uiRouter,
@@ -30,6 +31,7 @@ let localReposModule = angular.module('localRepos', [
   .service('AddPkgByKeyResource', AddPkgByKeyResource)
   .service('DelPkgByKeyResource', DelPkgByKeyResource)
   .service('SnapshotsResource', SnapshotsResource)
+  .service('UploadPackageResource', UploadPackageResource)
 
   .name;
 
