@@ -1,15 +1,15 @@
 <div class="packages">
   <h1>Packages list</h1>
 
-  <table class="diff">
+  <table class="mdl-data-table mdl-js-data-table diff">
     <tr>
-      <th>Architecture</th>
-      <th>Package</th>
+      <th class="mdl-data-table__cell--non-numeric">Architecture</th>
+      <th class="mdl-data-table__cell--non-numeric">Package</th>
       <th>Version</th>
     </tr>
     <tr ng-repeat="pack in $ctrl.packages">
-      <td>{{ pack.Architecture }}</td>
-      <td>{{ pack.Package }}</td>
+      <td class="mdl-data-table__cell--non-numeric">{{ pack.Architecture }}</td>
+      <td class="mdl-data-table__cell--non-numeric">{{ pack.Package }}</td>
       <td>{{ pack.Version }}</td>
     </tr>
   </table>

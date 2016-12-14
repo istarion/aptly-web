@@ -4,10 +4,10 @@
     <div ng-repeat="snapshot in $ctrl.snapshots">
       <md-menu md-offset="10 30">
         <md-button ng-click="$mdOpenMenu($event)">
-          <h3>
+          <h5>
             <md-icon> content_copy </md-icon>
             {{snapshot.Name}}
-          </h3><i>({{snapshot.Description}})</i>
+          </h5><i>({{snapshot.Description}})</i>
         </md-button>
         <md-menu-content class="repo-menu" width="4">
           <md-menu-item>

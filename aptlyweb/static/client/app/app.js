@@ -1,6 +1,7 @@
 import angular from 'angular';
 import uiRouter from 'angular-ui-router';
 import 'angular-material/angular-material.css'
+import 'material-design-lite/material.css'
 import 'angular-animate';
 import 'angular-aria';
 import ngMaterial from 'angular-material';

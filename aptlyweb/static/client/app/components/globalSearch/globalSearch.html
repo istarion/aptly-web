@@ -15,16 +15,16 @@
 
   </div>
 
-  <table class="diff" ng-if="$ctrl.packages">
+  <table class="mdl-data-table mdl-js-data-table" ng-if="$ctrl.packages">
     <tr>
-      <th>Container type</th>
-      <th>Container name</th>
-      <th>Packages</th>
+      <th class="mdl-data-table__cell--non-numeric">Container type</th>
+      <th class="mdl-data-table__cell--non-numeric">Container name</th>
+      <th class="mdl-data-table__cell--non-numeric">Packages</th>
     </tr>
     <tr ng-repeat="container in $ctrl.packages">
-      <td>{{ container.container_type }}</td>
-      <td>{{ container.container_name }}</td>
-      <td>
+      <td class="mdl-data-table__cell--non-numeric">{{ container.container_type }}</td>
+      <td class="mdl-data-table__cell--non-numeric">{{ container.container_name }}</td>
+      <td class="mdl-data-table__cell--non-numeric">
         <md-list>
           <md-list-item ng-repeat="pack in container.packages">
             <p>{{pack}}</p>
