@@ -10,16 +10,14 @@
   </md-toolbar>
   <md-dialog-content>
     <div aria-label="Add package from upload">
-     {{$ctrl.name}}
       <div flex="row">
         <md-list>
           <md-list-item ng-repeat="file in $ctrl.uploaded_list">
-            <md-button class="md-primary md-raised" ng-click="$ctrl.answer(file)">OK</md-button>
+            <md-button class="md-primary" ng-click="$ctrl.answer(file)">Add {{file}}</md-button>
           </md-list-item>
         </md-list>
       </div>
       <div flex="row">
-        <md-button class="md-primary md-raised" ng-click="$ctrl.answer($ctrl.repo)">OK</md-button>
       </div>
 
     </div>

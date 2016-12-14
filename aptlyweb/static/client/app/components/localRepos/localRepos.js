@@ -3,15 +3,13 @@ import uiRouter from 'angular-ui-router';
 import ngMaterial from 'angular-material';
 
 import localReposComponent from './localRepos.component';
-import {LocalReposResource, AddPkgByKeyResource, DelPkgByKeyResource} from './localRepos.service';
+import {LocalReposResource, AddPkgByKeyResource, DelPkgByKeyResource, AddPkgFromUploadResource} from './localRepos.service';
 import SnapshotsResource from '../snapshots/snapshots.service';
-import UploadedPackagesDialog from './uploadedPackagesDialog/uploadedPackagesDialog'
 import {UploadPackageResource} from '../upload/upload.service'
 
 let localReposModule = angular.module('localRepos', [
   uiRouter,
   ngMaterial,
-  UploadedPackagesDialog
 ])
 
   .component('localRepos', localReposComponent)
@@ -32,6 +30,7 @@ let localReposModule = angular.module('localRepos', [
   .service('DelPkgByKeyResource', DelPkgByKeyResource)
   .service('SnapshotsResource', SnapshotsResource)
   .service('UploadPackageResource', UploadPackageResource)
+  .service('AddPkgFromUploadResource', AddPkgFromUploadResource)
 
   .name;
 

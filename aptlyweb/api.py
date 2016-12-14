@@ -3,11 +3,12 @@ import flask_restful
 from aptlyweb import app
 from aptlyweb.resources.aptly import AptlyVersion
 from aptlyweb.resources.repo import LocalRepo, DiffWithSnapshot, DiffWithRepo, AddPackageByKey, DelPackageByKey
+from aptlyweb.resources.repo import AddPackageFromUpload
 from aptlyweb.resources.snapshot import Snapshot, SnapshotsDiff
 from aptlyweb.resources.local_package import PackageList, Package
 from aptlyweb.resources.snapshot_package import SnapshotPackages
 from aptlyweb.resources.package_search import PackageSearch, PackageAdvancedSearch
-from aptlyweb.resources.uploads import Upload
+from aptlyweb.resources.uploads import Upload, CleanUploads
 
 
 def init_api():
@@ -20,6 +21,7 @@ def init_api():
     api.add_resource(LocalRepo, '/repos/<string:name>', endpoint='local_repo')
     api.add_resource(AddPackageByKey, '/repos/<string:name>/add_pkg')
     api.add_resource(DelPackageByKey, '/repos/<string:name>/del_pkg')
+    api.add_resource(AddPackageFromUpload, '/repos/<string:name>/add_from_upload')
 
     api.add_resource(Snapshot, '/snapshots/', endpoint='snapshots')
     api.add_resource(Snapshot, '/snapshots/<string:name>', endpoint='snapshot')
@@ -36,6 +38,7 @@ def init_api():
     api.add_resource(DiffWithRepo, '/repos/diff_repo/<string:left_item>/<string:right_item>', endpoint='repo_srepo_diff')
 
     api.add_resource(Upload, '/upload')
+    api.add_resource(CleanUploads, '/upload/clean')
 
 
 

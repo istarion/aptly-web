@@ -135,4 +135,6 @@ class AddPackageFromUpload(Resource):
     def post(name):
         parser = reqparse.RequestParser()
         parser.add_argument('filename')
+        args = parser.parse_args()
         result = pyptly_api.add_uploaded_pkg(name, 'web-upload', **args)
+        return result

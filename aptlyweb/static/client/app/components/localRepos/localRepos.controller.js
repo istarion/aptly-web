@@ -123,7 +123,7 @@ class LocalReposController {
         parent: angular.element(document.body),
         targetEvent: event,
         clickOutsideToClose: true,
-        fullscreen: true,
+        fullscreen: false,
         locals: {
           repo: repo
         }

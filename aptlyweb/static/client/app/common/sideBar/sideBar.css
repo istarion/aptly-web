@@ -1,6 +1,5 @@
 side-bar md-sidenav {
   min-height: 100%;
-  font-size: 1.6rem;
 }
 side-bar md-sidenav .side-menu {
   padding: 0;
@@ -8,8 +7,9 @@ side-bar md-sidenav .side-menu {
 side-bar md-sidenav .side-menu .md-button {
   border-radius: 0;
   cursor: pointer;
-  padding: 0 0 0 15px;
+  padding: 5px 10px 5px 15px;
   margin: 0;
   width: 100%;
   text-align: left;
+  font-size: 1.3rem;
 }
