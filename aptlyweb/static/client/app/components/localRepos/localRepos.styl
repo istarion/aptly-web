@@ -9,6 +9,26 @@
       margin 0
       display inline
 
+    .md-headline
+      overflow: hidden
+
+    .md-subhead
+      overflow: hidden
+
+    md-card
+      width calc(100% - 20px)
+
+    @media (min-width: 1200px)
+      md-card
+        width calc(50% - 20px)
+
+    @media (min-width: 1700px)
+      md-card
+        width calc(33% - 20px)
+
+    md-card-actions
+      justify-content space-between
+
   div
     height 100%
 

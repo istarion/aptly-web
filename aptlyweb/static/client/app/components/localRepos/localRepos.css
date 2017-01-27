@@ -10,6 +10,28 @@
   margin: 0;
   display: inline;
 }
+.localRepos .container .md-headline {
+  overflow: hidden;
+}
+.localRepos .container .md-subhead {
+  overflow: hidden;
+}
+.localRepos .container md-card {
+  width: calc(100% - 20px);
+}
+@media (min-width: 1200px) {
+  .localRepos .container md-card {
+    width: calc(50% - 20px);
+  }
+}
+@media (min-width: 1700px) {
+  .localRepos .container md-card {
+    width: calc(33% - 20px);
+  }
+}
+.localRepos .container md-card-actions {
+  justify-content: space-between;
+}
 .localRepos div {
   height: 100%;
 }

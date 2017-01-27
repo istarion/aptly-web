@@ -3,7 +3,8 @@ import DiffDialogComponent from '../snapshots/diffDialog/diffDialog.component';
 import UploadedPackagesComponent from './uploadedPackagesDialog/uploadedPackagesDialog.component'
 
 class LocalReposController {
-  constructor($mdDialog, $mdToast, LocalReposResource, SnapshotsResource, AddPkgByKeyResource, DelPkgByKeyResource) {
+  constructor($mdDialog, $mdToast, $state, LocalReposResource, SnapshotsResource, AddPkgByKeyResource,
+              DelPkgByKeyResource) {
     'ngInject';
     var self = this;
     this.name = 'localRepos';
@@ -14,7 +15,6 @@ class LocalReposController {
     this.query = function () {
       self.local_repos = LocalReposResource.query();
     };
-
 
     this.editRepo = function (event, repo) {
       var editDialog = angular.extend(EditRepoComponent, {
@@ -73,16 +73,17 @@ class LocalReposController {
 
 
     this.showPackages = function (event, repo) {
-      var packagesDialog = angular.extend(PackagesDialogComponent, {
-        parent: angular.element(document.body),
-        targetEvent: event,
-        clickOutsideToClose: true,
-        fullscreen: true,
-        locals: {
-          repo: repo
-        }
-      });
-      $mdDialog.show(PackagesDialogComponent);
+      $state.go('packages', {srcName: repo.repoName, type: 'repo'})
+      // var packagesDialog = angular.extend(PackagesDialogComponent, {
+      //   parent: angular.element(document.body),
+      //   targetEvent: event,
+      //   clickOutsideToClose: true,
+      //   fullscreen: true,
+      //   locals: {
+      //     repo: repo
+      //   }
+      // });
+      // $mdDialog.show(PackagesDialogComponent);
     };
 
 
