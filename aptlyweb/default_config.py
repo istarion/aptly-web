@@ -1,6 +1,8 @@
 SECRET_KEY = 'TopSecretKey322'
 
 APTLY_URL = 'localhost:8080'
+APTLY_AUTH_USER = None  # Change to 'username' if BasicAuth needed
+APTLY_AUTH_PASSWORD = None  # Change to 'password' if BasicAuth needed
 
 SQLALCHEMY_DATABASE_URI = 'postgresql://postgres:foobar@localhost/aptlyweb'
 SQLALCHEMY_TRACK_MODIFICATIONS = True

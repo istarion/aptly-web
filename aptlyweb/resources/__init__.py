@@ -3,7 +3,7 @@ from flask_restful import abort
 import pyptly
 
 
-pyptly_api = pyptly.Aptly(app.aptly_url)
+pyptly_api = pyptly.Aptly(app.aptly_url, auth=(app.aptly_auth_user, app.aptly_auth_password))
 
 
 def error_check(result):

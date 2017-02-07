@@ -16,6 +16,8 @@ CORS(app)
 app.config.from_object(default_config)
 app.config.from_envvar('APTLYWEB_SETTINGS')
 app.aptly_url = app.config['APTLY_URL']
+app.aptly_auth_user = app.config.get('APTLY_AUTH_USER')
+app.aptly_auth_password = app.config.get('APTLY_AUTH_PASSWORD')
 
 db = SQLAlchemy(app)
 
