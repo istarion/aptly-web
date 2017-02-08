@@ -1,32 +1,38 @@
 <div class="localRepos" md-toa>
   <h1>Local repositories list</h1>
   <div class="container">
-    <md-card ng-repeat="repo in $ctrl.local_repos">
-      <md-menu md-offset="10 30">
-      <md-card-title>
-        <md-card-title-text>
-          <div layout="row" style="justify-content: space-between">
-            <div layout="column">
-              <span class="md-headline"><md-icon> archive</md-icon>{{repo.Name}}</span>
-              <span class="md-subhead">{{repo.Comment}}</span>
+    <md-card ng-repeat="repo in $ctrl.local_repos" oncontextmenu="return false;">
+      <md-menu>
+        <md-card-title oncontextmenu="return false;">
+          <md-card-title-text oncontextmenu="return false;">
+            <div layout="row" style="justify-content: space-between" oncontextmenu="return false;"
+                 ng-mouseup="$ctrl.openMenu($event, $mdOpenMenu)">
+              <div layout="column" oncontextmenu="return false;">
+                <span class="md-headline"><md-icon> archive</md-icon>{{repo.Name}}</span>
+                <span class="md-subhead">{{repo.Comment}}</span>
+              </div>
+              <div layout="column" oncontextmenu="return false;">
+                <md-button class="md-icon-button" ng-click="$mdOpenMenu($event)">
+                  <md-icon> menu</md-icon>
+                </md-button>
+                <!--<md-button class="md-icon-button" ui-sref="packages({srcName: repo.Name, type: 'repos'})">-->
+                <!--<md-icon> view_list</md-icon>-->
+                <!--</md-button>-->
+              </div>
             </div>
-            <div layout="column">
-              <md-button class="md-icon-button" ng-click="$mdOpenMenu($event)">
-                <md-icon> build</md-icon>
-              </md-button>
-              <md-button class="md-icon-button" ui-sref="packages({srcName: repo.Name, type: 'repos'})">
-                <md-icon> view_list</md-icon>
-              </md-button>
-            </div>
-          </div>
 
-        </md-card-title-text>
-      </md-card-title>
+          </md-card-title-text>
+        </md-card-title>
         <md-menu-content class="repo-menu" width="4">
           <md-menu-item>
+            <md-button ui-sref="packages({srcName: repo.Name, type: 'repos'})">
+              Show packages...
+            </md-button>
+          </md-menu-item>
+          <md-menu-item>
             <md-button ng-click="$ctrl.diffRepo($event, repo)">
-                Diff with...
-              </md-button>
+              Diff with...
+            </md-button>
           </md-menu-item>
           <md-menu-divider></md-menu-divider>
           <md-menu-item>

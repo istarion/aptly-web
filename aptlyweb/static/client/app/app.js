@@ -19,7 +19,12 @@ angular.module('app', [
   .config(($mdThemingProvider) => {
     "ngInject";
 
-    $mdThemingProvider.theme('default');
+    $mdThemingProvider
+      .theme('default')
+      .primaryPalette('light-blue')
+      .accentPalette('cyan')
+      .warnPalette('red')
+      .backgroundPalette('grey');
   })
 
   .component('app', AppComponent);

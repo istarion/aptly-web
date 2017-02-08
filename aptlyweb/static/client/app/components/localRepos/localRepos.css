@@ -35,6 +35,15 @@
 .localRepos div {
   height: 100%;
 }
+.localRepos md-card md-card-title {
+  padding: 16px 8px 8px 16px;
+}
+.localRepos md-card {
+  margin: 5px;
+}
+.localRepos md-card md-card-title md-card-title-text:only-child .md-subhead {
+  padding-top: 0;
+}
 .repo-menu {
   max-height: 400px !important;
 }

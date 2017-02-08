@@ -16,6 +16,12 @@ class LocalReposController {
       self.local_repos = LocalReposResource.query();
     };
 
+    this.openMenu = function (event, $mdOpenMenu) {
+      if (event.which == 3) {  //Right click
+        $mdOpenMenu(event);
+      }
+    };
+
     this.editRepo = function (event, repo) {
       var editDialog = angular.extend(EditRepoComponent, {
         parent: angular.element(document.body),
