@@ -11,14 +11,51 @@ from webargs import fields
 from flask_ldap3_login.forms import LDAPLoginForm
 from flask_cors import cross_origin
 
+from aptlyweb.models.user import User
+
 
 @app.ldap_manager.save_user
 def save_user(dn, username, data, memberships):
     user = app.user_datastore.get_user(username)
+    login_groups = app.config.get('APTLY_USERS_GROUP_LIST')
     if not user:
-        user = app.user_datastore.create_user(email=username, password='', )
-        db.session.commit()
+        if check_group(data, login_groups):
+            user = app.user_datastore.create_user(email=username, password='', )
+            db.session.commit()
+            update_roles_by_groups(data, username)
+            return user
+        flash('Your account is not active. Please, contact administrator')
+        return User(active=False)
+    update_roles_by_groups(data, username)
     return user
+
+
+def update_roles_by_groups(data, username):
+    admin_groups = app.config.get('APTLY_ADMIN_GROUP_LIST')
+    if not admin_groups:
+        return
+    if check_group(data, admin_groups):
+        app.user_datastore.add_role_to_user(
+            app.user_datastore.find_user(email=username),
+            app.user_datastore.find_role('admin')
+        )
+    else:
+        app.user_datastore.remove_role_from_user(
+            app.user_datastore.find_user(email=username),
+            app.user_datastore.find_role('admin')
+        )
+    db.session.commit()
+
+
+def check_group(domain_user, group_list):
+    for ldap_group in domain_user[app.config.get('LDAP_USER_GROUPS_ATTR')]:
+        if group_list is None:
+            return True
+        for group_name in group_list:
+            if "CN=" + group_name in ldap_group:
+                return True
+    return False
+
 
 
 @app.login_manager.user_loader
@@ -27,6 +64,7 @@ def load_user(id):
     if user:
         return user
     return None
+
 
 @app.route('/')
 @login_required
@@ -42,7 +80,7 @@ def login():
     form = LDAPLoginForm()
 
     if form.validate_on_submit():
-        login_user(form.user, remember=True)
+        login_user(form.user, remember=False)
         session['username'] = request.form['username']
         return redirect('/')
 
