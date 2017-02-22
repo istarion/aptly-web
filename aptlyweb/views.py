@@ -26,6 +26,7 @@ def save_user(dn, username, data, memberships):
             return user
         flash('Your account is not active. Please, contact administrator')
         return User(active=False)
+    user.active = check_group(data, login_groups)
     update_roles_by_groups(data, username)
     return user
 
