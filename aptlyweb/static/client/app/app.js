@@ -16,15 +16,15 @@ angular.module('app', [
     Components,
     ngMaterial,
   ])
-  .config(($mdThemingProvider) => {
-    "ngInject";
-
-    $mdThemingProvider
-      .theme('default')
-      .primaryPalette('light-blue')
-      .accentPalette('cyan')
-      .warnPalette('red')
-      .backgroundPalette('grey');
-  })
+  // .config(($mdThemingProvider) => {
+  //   "ngInject";
+  //
+  //   $mdThemingProvider
+  //     .theme('default')
+  //     .primaryPalette('light-blue')
+  //     .accentPalette('cyan')
+  //     .warnPalette('red')
+  //     .backgroundPalette('grey');
+  // })
 
   .component('app', AppComponent);

@@ -9,7 +9,7 @@ roles_users = db.Table('roles_users',
 class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     dn = db.Column(db.String(255), unique=True)
-    email = db.Column(db.String(255), unique=True)
+    login = db.Column(db.String(255), unique=True)
     password = db.Column(db.String(255))
     active = db.Column(db.Boolean())
     confirmed_at = db.Column(db.DateTime())

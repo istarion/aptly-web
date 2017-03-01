@@ -10,18 +10,22 @@ APTLY_ADMIN_GROUP_LIST = None  # Change to ['ldap_groupname',...], for login gro
 SQLALCHEMY_DATABASE_URI = 'postgresql://postgres:foobar@localhost/aptlyweb'
 SQLALCHEMY_TRACK_MODIFICATIONS = True
 
-SECURITY_USER_IDENTITY_ATTRIBUTES = 'email'
+SECURITY_USER_IDENTITY_ATTRIBUTES = 'login'
 
 # Ldap config, reference: http://flask-ldap3-login.readthedocs.io/en/latest/configuration.html
 LDAP_HOST = 'ldap://172.27.254.2'
 LDAP_PORT = 3268
 LDAP_BASE_DN = 'DC=i-free,DC=local'
-LDAP_BIND_DIRECT_CREDENTIALS = True
+
+LDAP_BIND_DIRECT_CREDENTIALS = False
+LDAP_BIND_USER_DN = None  # Change this
+LDAP_BIND_USER_PASSWORD = None  # Change this
+
 LDAP_USER_SEARCH_SCOPE = 'SUBTREE'
 LDAP_GROUP_SEARCH_SCOPE = 'SUBTREE'
-LDAP_USER_LOGIN_ATTR = 'mail'
+LDAP_USER_LOGIN_ATTR = 'sAMAccountName'
 LDAP_GROUP_MEMBERS_ATTR = 'member'
 LDAP_SEARCH_FOR_GROUPS = True
 
-# Custom field, in user ldap record with groups
+# Custom field in user ldap record with list of groups
 LDAP_USER_GROUPS_ATTR = 'memberOf'

@@ -2,6 +2,7 @@
 
 import os
 import sys
+from sqlalchemy.exc import IntegrityError
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
 WORK_DIR = os.path.dirname(os.path.abspath(__file__))
 
@@ -12,8 +13,13 @@ from aptlyweb import app as application, db
 
 def init_db():
     db.create_all(app=application)
-    application.user_datastore.create_role(name='admin', description='Aptly administrator')
     db.session.commit()
+    try:
+        application.user_datastore.create_role(name='admin', description='Aptly administrator')
+        db.session.commit()
+    except IntegrityError as e:
+        print(e)
+        db.session.rollback()
     print('Done!')
     exit(0)
 
@@ -26,9 +32,9 @@ def set_admin():
     except NameError:
         pass
 
-    email = input('Enter email: ')
+    login = input('Enter login: ')
 
-    application.user_datastore.add_role_to_user(application.user_datastore.find_user(email=email),
+    application.user_datastore.add_role_to_user(application.user_datastore.find_user(login=login),
                                                 application.user_datastore.find_role('admin'))
     db.session.commit()
     print('Done!')

@@ -6,7 +6,7 @@ with open(os.path.join(here, 'requirements.txt')) as f:
     requires = f.read()
 setup(
     name='aptlyweb',
-    version=0.5,
+    version=0.6,
     description='Aptly web UI',
     long_description='',
     classifiers=[

@@ -20,7 +20,7 @@ def save_user(dn, username, data, memberships):
     login_groups = app.config.get('APTLY_USERS_GROUP_LIST')
     if not user:
         if check_group(data, login_groups):
-            user = app.user_datastore.create_user(email=username, password='', )
+            user = app.user_datastore.create_user(login=username, password='', )
             db.session.commit()
             update_roles_by_groups(data, username)
             return user
@@ -37,12 +37,12 @@ def update_roles_by_groups(data, username):
         return
     if check_group(data, admin_groups):
         app.user_datastore.add_role_to_user(
-            app.user_datastore.find_user(email=username),
+            app.user_datastore.find_user(login=username),
             app.user_datastore.find_role('admin')
         )
     else:
         app.user_datastore.remove_role_from_user(
-            app.user_datastore.find_user(email=username),
+            app.user_datastore.find_user(login=username),
             app.user_datastore.find_role('admin')
         )
     db.session.commit()
@@ -53,7 +53,7 @@ def check_group(domain_user, group_list):
         if group_list is None:
             return True
         for group_name in group_list:
-            if "CN=" + group_name in ldap_group:
+            if "CN=" + group_name + "," in ldap_group:
                 return True
     return False
 

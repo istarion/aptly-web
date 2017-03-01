@@ -7,6 +7,7 @@ Flask-Cors ~= 3.0.2
 Flask-SQLAlchemy ~= 2.1
 Flask-Security ~= 1.7.5
 flask-ldap3-login ~= 0.9.12
+Flask-WTF ~= 0.13.1
 
 psycopg2
 

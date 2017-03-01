@@ -165,7 +165,7 @@
         <fieldset>
 
             <form method="POST">
-                <label>LDAP email: {{ form.username() }}</label>
+                <label>Login: {{ form.username() }}</label>
                 {% if form.errors['username'] %}
                 <p class="error">
                     {{ form.errors['username'][0] }}
