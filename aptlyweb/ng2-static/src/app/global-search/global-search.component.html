@@ -1,0 +1,15 @@
+<div class="global-search-component">
+  <div class="fullscreen-row">
+    <md-input-container class="search-input">
+      <input mdInput placeholder="Package name">
+    </md-input-container>
+    <!--<button md-raised-button class="button"><md-icon>details</md-icon>Extend</button>-->
+    <button class="button mat-primary" md-raised-button>Find</button>
+    <md-slide-toggle class="button" [(ngModel)]="advancedSearch">Extended</md-slide-toggle>
+  </div>
+
+  <div class="search-filters" [hidden]="!advancedSearch">
+    blablabla {{advancedSearch}}
+  </div>
+</div>
+

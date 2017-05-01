@@ -1,0 +1,18 @@
+.fullscreen-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: baseline;
+}
+
+.fullscreen-row .button {
+  margin: 0 20px;
+}
+
+.search-input {
+  flex-basis: 70%;
+}
+
+.global-search-component {
+  padding: 30px 50px;
+}

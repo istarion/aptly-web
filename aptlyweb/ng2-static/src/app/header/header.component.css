@@ -1,0 +1,17 @@
+.toolbar-space-filler {
+  flex: 1 1 auto;
+}
+
+.aptly-main-toolbar .aptly-menu{
+  padding-right: 50px;
+}
+
+.aptly-logo {
+  font-weight: bold;
+}
+
+.aptly-main-toolbar .aptly-current-page{
+  padding-left: 50px;
+}
+
+

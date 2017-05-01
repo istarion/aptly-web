@@ -68,7 +68,7 @@ def load_user(id):
 
 
 @app.route('/')
-@login_required
+# @login_required
 def index():
     return render_template('index.html')
     # return app.send_static_file('index.html')
@@ -96,6 +96,6 @@ def log_out():
     return redirect(url_for('security.login'))
 
 @app.route('/dist/<path:path>')
-@login_required
+# @login_required
 def dist(path):
     return send_from_directory('static/dist/', path)
