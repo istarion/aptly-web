@@ -4,12 +4,51 @@
       <input mdInput placeholder="Package name">
     </md-input-container>
     <!--<button md-raised-button class="button"><md-icon>details</md-icon>Extend</button>-->
-    <button class="button mat-primary" md-raised-button>Find</button>
+    <button class="button mat-primary" md-raised-button (click)="find()">Find</button>
     <md-slide-toggle class="button" [(ngModel)]="advancedSearch">Extended</md-slide-toggle>
   </div>
 
-  <div class="search-filters" [hidden]="!advancedSearch">
-    blablabla {{advancedSearch}}
+  <div *ngIf="advancedSearch" class="fullscreen-row search-filters"
+       [@flyInOut]="'in'">
+    <div class="column">
+      <!--<label>Search in:</label>-->
+      <div class="column" style="height: 112px;">
+        <md-checkbox style="margin: 10px;" [checked]="true">Repository</md-checkbox>
+        <div style="height: 12px;"></div>
+        <md-checkbox style="margin: 10px;" [checked]="true">Snapshot</md-checkbox>
+      </div>
+    </div>
+    <div class="column" style="width: 100%" flex>
+      <div class="row full-width" style="align-items: baseline">
+        <md-select style="width: 15%;" [(ngModel)]="filter.versionOperation" placeholder="&nbsp;">
+           <md-option [value]="'=='">Package Version ==</md-option>
+          <md-option [value]="'>='">Package Version >=</md-option>
+          <md-option [value]="'<='">Package Version <=</md-option>
+          <md-option [value]="'>>'">Package Version >></md-option>
+          <md-option [value]="'<<'">Package Version <<</md-option>
+        </md-select>
+        <md-input-container style="width: 55%">
+          <input mdInput>
+        </md-input-container>
+        <md-select placeholder="Architecture" style="width: 30%; padding-left: 20px;" [(ngModel)]="filter.arch">
+           <md-option *ngFor="let arch of architectures" [value]="arch.code">{{ arch.name }}</md-option>
+        </md-select>
+      </div>
+      <md-input-container style="width: 100%">
+        <input mdInput placeholder="Key">
+      </md-input-container>
+
+    </div>
+  </div>
+  <div style="margin-top: 20px;">
+      <ngx-datatable
+      class="material"
+        [rows]="mockRows"
+        [columns]="mockCols"
+        [columnMode]="'force'"
+        *ngIf="findTriggered"
+        (activate)="searchElementActivate($event)">
+    </ngx-datatable>
   </div>
 </div>
 

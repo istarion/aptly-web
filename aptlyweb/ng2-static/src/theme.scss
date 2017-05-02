@@ -1,0 +1,15 @@
+@import '~@angular/material/theming';
+@include mat-core();
+//$aptly-dark-primary: mat-palette($mat-light-blue, 900);
+//$aptly-dark-accent: mat-palette($mat-teal, 600, A100, A400);
+//$aptly-dark-warn: mat-palette($mat-red, 600);
+//$aptly-dark-theme: mat-dark-theme($aptly-dark-primary, $aptly-dark-accent, $aptly-dark-warn);
+////.aptly-dark-theme {
+//  @include angular-material-theme($aptly-dark-theme);
+////}
+
+$aptly-light-primary: mat-palette($mat-light-blue, 500);
+$aptly-light-accent:  mat-palette($mat-teal, 600, A100, A400);
+$aptly-light-warn:    mat-palette($mat-red, 600);
+$aptly-light-theme:   mat-light-theme($aptly-light-primary, $aptly-light-accent, $aptly-light-warn);
+@include angular-material-theme($aptly-light-theme);
