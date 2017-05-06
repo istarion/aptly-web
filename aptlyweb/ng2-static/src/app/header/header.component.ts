@@ -6,7 +6,7 @@ import 'rxjs/add/operator/mergeMap';
 @Component({
   selector: 'aptly-header',
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.css']
+  styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
   currentPage: string;

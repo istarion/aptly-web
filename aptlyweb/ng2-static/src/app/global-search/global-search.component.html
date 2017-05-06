@@ -20,17 +20,17 @@
     </div>
     <div class="column" style="width: 100%" flex>
       <div class="row full-width" style="align-items: baseline">
-        <md-select style="width: 15%;" [(ngModel)]="filter.versionOperation" placeholder="&nbsp;">
-           <md-option [value]="'=='">Package Version ==</md-option>
-          <md-option [value]="'>='">Package Version >=</md-option>
-          <md-option [value]="'<='">Package Version <=</md-option>
-          <md-option [value]="'>>'">Package Version >></md-option>
-          <md-option [value]="'<<'">Package Version <<</md-option>
+        <md-select style="width: 170px;" [(ngModel)]="filter.versionOperation" placeholder="&nbsp;">
+           <md-option [value]="'=='">Package version ==</md-option>
+          <md-option [value]="'>='">Package version >=</md-option>
+          <md-option [value]="'<='">Package version <=</md-option>
+          <md-option [value]="'>>'">Package version >></md-option>
+          <md-option [value]="'<<'">Package version <<</md-option>
         </md-select>
-        <md-input-container style="width: 55%">
+        <md-input-container style="width: calc(55% - 170px)">
           <input mdInput>
         </md-input-container>
-        <md-select placeholder="Architecture" style="width: 30%; padding-left: 20px;" [(ngModel)]="filter.arch">
+        <md-select placeholder="Architecture" style="width: 45%; padding-left: 20px;" [(ngModel)]="filter.arch">
            <md-option *ngFor="let arch of architectures" [value]="arch.code">{{ arch.name }}</md-option>
         </md-select>
       </div>
@@ -46,6 +46,7 @@
         [rows]="mockRows"
         [columns]="mockCols"
         [columnMode]="'force'"
+        [rowClass]="getRowClass"
         *ngIf="findTriggered"
         (activate)="searchElementActivate($event)">
     </ngx-datatable>

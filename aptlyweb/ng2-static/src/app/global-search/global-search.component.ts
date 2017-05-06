@@ -10,7 +10,7 @@ import {
 @Component({
   selector: 'app-global-search',
   templateUrl: './global-search.component.html',
-  styleUrls: ['./global-search.component.css'],
+  styleUrls: ['./global-search.component.scss'],
   animations: [
   trigger('flyInOut', [
     state('in', style({transform: 'translateX(0)'})),
@@ -34,7 +34,7 @@ export class GlobalSearchComponent implements OnInit {
 
   constructor() {
     this.advancedSearch = false;
-    this.architectures = [{code: 0, name: "All"}, {code: 1, name: "i386"}, {code: 2, name: "and64"}];
+    this.architectures = [{code: 0, name: "All"}, {code: 1, name: "i386"}, {code: 2, name: "amd64"}];
     this.filter = {
       arch: 0,
       versionOperation: '=='
@@ -69,6 +69,10 @@ export class GlobalSearchComponent implements OnInit {
       }
       console.log($event);
     }
+  }
+
+  getRowClass(row) {
+    return {'clickable-row': true};
   }
 
 }

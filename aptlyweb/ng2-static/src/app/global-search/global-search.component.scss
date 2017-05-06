@@ -20,7 +20,6 @@
 .search-filters {
   border: 1px solid #00897B;
   background-color: #e6fef7;
-  margin: 0 5%;
   padding: 20px 10px 10px 10px;
 }
 
@@ -47,4 +46,8 @@
 
 .half-width {
   width: 50%;
+}
+
+.clickable-row{
+  cursor: pointer!important;
 }
