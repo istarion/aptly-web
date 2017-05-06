@@ -1,3 +1,16 @@
-<p>
-  snapshots works!
-</p>
+<div class="snapshots" fxLayout="column" fxLayoutAlign="space-around stretch">
+  <md-input-container >
+    <input mdInput placeholder="Snapshot name">
+  </md-input-container>
+  <md-list class="snapshots__list">
+    <md-list-item class="snapshots__list-item" *ngFor="let snap of mockSnapshots">
+      <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="25px" fxFlex>
+        <md-icon md-list-icon [ngClass]="snap.icon.class">{{snap.icon.name}}</md-icon>
+        <span fxFlex>{{snap.name}}</span>
+        <span fxFlex="25%">{{snap.date}}</span>
+        <span fxFlex="25%">{{snap.base}}</span>
+        <span fxFlex="25%">{{snap.comment}}</span>
+      </div>
+    </md-list-item>
+  </md-list>
+</div>

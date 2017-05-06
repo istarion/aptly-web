@@ -1,11 +1,12 @@
-<div class="global-search-component" fxLayout="column" fxLayoutGap="25px">
+<div class="global-search-component" fxLayout="column" fxLayoutGap="25px" #globalSearch>
   <form>
     <div [fxLayout]="row" class="fullscreen-row">
       <md-input-container fxFlex>
         <input mdInput placeholder="Package name">
       </md-input-container>
       <button fxFlexAlign="center" class="button mat-primary" md-raised-button (click)="find()">Find</button>
-      <md-slide-toggle fxFlexAlign="center" class="button" (change)="recalcTable()" [(ngModel)]="advancedSearch" name="extended">Extended
+      <md-slide-toggle fxFlexAlign="center" class="button" [(ngModel)]="advancedSearch" (change)="extendedSearchTrigger()"
+                       name="extended">Extended
       </md-slide-toggle>
     </div>
 
@@ -40,16 +41,20 @@
     </div>
   </form>
 
-  <div *ngIf="findTriggered" fxFlex>
+  <div *ngIf="findTriggered" fxFlex fxLayout="row">
     <ngx-datatable
       class="material"
-      [ngClass]="{'search__table_big': !advancedSearch, 'search__table_small': advancedSearch}"
       [rows]="mockRows"
       [columns]="mockCols"
       [columnMode]="'force'"
       [rowClass]="getRowClass"
       [scrollbarV]="true"
-      (activate)="searchElementActivate($event)">
+      (activate)="searchElementActivate($event)" fxFill>
     </ngx-datatable>
+
   </div>
 </div>
+
+<ng-template #iconTemplate let-value="value">
+  <md-icon md-list-icon [ngClass]="value.class">{{value.name}}</md-icon>
+</ng-template>

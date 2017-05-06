@@ -11,6 +11,7 @@
 
 .global-search-component {
   padding: 30px 50px 0 50px;
+  height: calc(100vh - 90px);
 }
 
 .search-filters {
@@ -32,10 +33,20 @@
   cursor: pointer!important;
 }
 
-.search__table_big {
-  height: calc(100vh - 200px);
+//.search__table_big {
+//  height: calc(100vh - 200px);
+//}
+//
+//.search__table_small {
+//  height: calc(100vh - 334px);
+//}
+
+.repo-icon_basic {
+  color: #03a9f4;
+  position: relative;
 }
 
-.search__table_small {
-  height: calc(100vh - 334px);
+.snapshots-icon_basic {
+  color: #34cd6f;
+  position: relative;
 }

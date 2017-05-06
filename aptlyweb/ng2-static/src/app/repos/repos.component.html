@@ -1,3 +1,16 @@
-<p>
-  repos works!
-</p>
+<div class="repos" fxLayout="column" fxLayoutAlign="space-around stretch">
+  <md-input-container >
+    <input mdInput placeholder="Repository name">
+  </md-input-container>
+  <md-list class="repos__list">
+    <md-list-item class="repos__list-item" *ngFor="let repo of mockRepos">
+      <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="25px" fxFlex>
+        <md-icon md-list-icon [ngClass]="repo.icon.class">{{repo.icon.name}}</md-icon>
+        <span fxFlex>{{repo.name}}</span>
+        <span fxFlex="25%">{{repo.date}}</span>
+        <span fxFlex="25%">{{repo.base}}</span>
+        <span fxFlex="25%">{{repo.comment}}</span>
+      </div>
+    </md-list-item>
+  </md-list>
+</div>
