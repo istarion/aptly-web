@@ -7,3 +7,13 @@
 .clickable-row{
   cursor: pointer!important;
 }
+
+router-outlet + * { flex: 1 1 auto ; display: flex ; flex-direction: column ; }
+
+.mat-input-container {
+  top: 4px;
+}
+
+datatable-scroller{
+  width:100% !important;
+}

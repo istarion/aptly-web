@@ -1,55 +1,55 @@
-<div class="global-search-component">
-  <div class="fullscreen-row">
-    <md-input-container class="search-input">
-      <input mdInput placeholder="Package name">
-    </md-input-container>
-    <!--<button md-raised-button class="button"><md-icon>details</md-icon>Extend</button>-->
-    <button class="button mat-primary" md-raised-button (click)="find()">Find</button>
-    <md-slide-toggle class="button" [(ngModel)]="advancedSearch">Extended</md-slide-toggle>
-  </div>
-
-  <div *ngIf="advancedSearch" class="fullscreen-row search-filters"
-       [@flyInOut]="'in'">
-    <div class="column">
-      <!--<label>Search in:</label>-->
-      <div class="column" style="height: 112px;">
-        <md-checkbox style="margin: 10px;" [checked]="true">Repository</md-checkbox>
-        <div style="height: 12px;"></div>
-        <md-checkbox style="margin: 10px;" [checked]="true">Snapshot</md-checkbox>
-      </div>
-    </div>
-    <div class="column" style="width: 100%" flex>
-      <div class="row full-width" style="align-items: baseline">
-        <md-select style="width: 170px;" [(ngModel)]="filter.versionOperation" placeholder="&nbsp;">
-           <md-option [value]="'=='">Package version ==</md-option>
-          <md-option [value]="'>='">Package version >=</md-option>
-          <md-option [value]="'<='">Package version <=</md-option>
-          <md-option [value]="'>>'">Package version >></md-option>
-          <md-option [value]="'<<'">Package version <<</md-option>
-        </md-select>
-        <md-input-container style="width: calc(55% - 170px)">
-          <input mdInput>
-        </md-input-container>
-        <md-select placeholder="Architecture" style="width: 45%; padding-left: 20px;" [(ngModel)]="filter.arch">
-           <md-option *ngFor="let arch of architectures" [value]="arch.code">{{ arch.name }}</md-option>
-        </md-select>
-      </div>
-      <md-input-container style="width: 100%">
-        <input mdInput placeholder="Key">
+<div class="global-search-component" fxLayout="column" fxLayoutGap="25px">
+  <form>
+    <div [fxLayout]="row" class="fullscreen-row">
+      <md-input-container fxFlex>
+        <input mdInput placeholder="Package name">
       </md-input-container>
-
+      <button fxFlexAlign="center" class="button mat-primary" md-raised-button (click)="find()">Find</button>
+      <md-slide-toggle fxFlexAlign="center" class="button" (change)="recalcTable()" [(ngModel)]="advancedSearch" name="extended">Extended
+      </md-slide-toggle>
     </div>
-  </div>
-  <div style="margin-top: 20px;">
-      <ngx-datatable
+
+    <div *ngIf="advancedSearch" class="search-filters"
+         [@flyInOut]="'flyFromLeft'" fxLayout="column">
+      <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="10px">
+        <md-checkbox [checked]="true" fxFlex="150px">Repository</md-checkbox>
+        <div flexLayout="row" fxFlex fxLayoutAlign="stretch center">
+          <md-select style="width: 170px;" [(ngModel)]="filter.versionOperation" placeholder="&nbsp;"
+                     name="versionOperation">
+            <md-option [value]="'=='">Package version ==</md-option>
+            <md-option [value]="'>='">Package version >=</md-option>
+            <md-option [value]="'<='">Package version <=</md-option>
+            <md-option [value]="'>>'">Package version >></md-option>
+            <md-option [value]="'<<'">Package version <<</md-option>
+          </md-select>
+          <md-input-container fxFlex>
+            <input mdInput>
+          </md-input-container>
+        </div>
+        <md-select placeholder="Architecture" fxFlex="200px" [(ngModel)]="filter.arch"
+                   name="arch">
+          <md-option *ngFor="let arch of architectures" [value]="arch.code">{{ arch.name }}</md-option>
+        </md-select>
+      </div>
+      <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="10px">
+        <md-checkbox fxFlex="150px" [checked]="true">Snapshot</md-checkbox>
+        <md-input-container fxFlex>
+          <input mdInput placeholder="Key">
+        </md-input-container>
+      </div>
+    </div>
+  </form>
+
+  <div *ngIf="findTriggered" fxFlex>
+    <ngx-datatable
       class="material"
-        [rows]="mockRows"
-        [columns]="mockCols"
-        [columnMode]="'force'"
-        [rowClass]="getRowClass"
-        *ngIf="findTriggered"
-        (activate)="searchElementActivate($event)">
+      [ngClass]="{'search__table_big': !advancedSearch, 'search__table_small': advancedSearch}"
+      [rows]="mockRows"
+      [columns]="mockCols"
+      [columnMode]="'force'"
+      [rowClass]="getRowClass"
+      [scrollbarV]="true"
+      (activate)="searchElementActivate($event)">
     </ngx-datatable>
   </div>
 </div>
-

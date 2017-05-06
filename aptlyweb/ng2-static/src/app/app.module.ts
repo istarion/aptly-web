@@ -12,6 +12,7 @@ import { MenuComponent } from './header/menu/menu.component';
 import { UserMenuComponent } from './header/user-menu/user-menu.component';
 
 import { AppRoutingModule }  from './app-routing.module'
+import { FlexLayoutModule } from "@angular/flex-layout";
 
 
 @NgModule({
@@ -28,6 +29,7 @@ import { AppRoutingModule }  from './app-routing.module'
     HttpModule,
     AppRoutingModule,
     RouterModule,
+    FlexLayoutModule,
     MdToolbarModule, MdButtonModule, MdMenuModule
   ],
   providers: [],

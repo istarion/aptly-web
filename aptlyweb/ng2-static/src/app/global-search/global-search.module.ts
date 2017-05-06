@@ -5,6 +5,7 @@ import {Routes, RouterModule} from '@angular/router';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
+import { FlexLayoutModule } from '@angular/flex-layout/flexbox';
 
 import { MdInputModule, MdButtonModule, MdIconModule, MdSlideToggleModule, MdCheckboxModule,
   MdSelectModule} from '@angular/material';
@@ -23,6 +24,7 @@ const routes: Routes = [
     BrowserAnimationsModule,
     MdInputModule, MdButtonModule, MdIconModule, MdSlideToggleModule, MdCheckboxModule, MdSelectModule,
     NgxDatatableModule,
+    FlexLayoutModule,
     RouterModule.forChild(routes)
   ],
   declarations: [GlobalSearchComponent]
