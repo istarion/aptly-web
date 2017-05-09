@@ -11,7 +11,7 @@ export class RepoPageComponent implements OnInit {
   mockRows: Array<object>;
   mockCols: Array<object>;
 
-  constructor(private route: ActivatedRoute) {
+  constructor(private router: Router, private route: ActivatedRoute) {
     this.mockRows = [
       {
         container: 'production-messaging',
@@ -179,6 +179,10 @@ export class RepoPageComponent implements OnInit {
 
   getRowClass(row) {
     return {'clickable-row': true};
+  }
+
+  goToPackage($event) {
+    this.router.navigate(['/package/', $event.row.name]);
   }
 
 }

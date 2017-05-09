@@ -7,6 +7,7 @@ import {
   transition
 } from '@angular/animations';
 import { window } from "rxjs/operator/window";
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'app-global-search',
@@ -36,7 +37,7 @@ export class GlobalSearchComponent implements OnInit {
   mockRows: Array<object>;
   mockCols: Array<object>;
 
-  constructor() {
+  constructor(private router: Router) {
     this.advancedSearch = false;
     this.architectures = [{code: 0, name: "All"}, {code: 1, name: "i386"}, {code: 2, name: "amd64"}];
     this.filter = {
@@ -308,9 +309,13 @@ export class GlobalSearchComponent implements OnInit {
   searchElementActivate($event) {
     if ($event.type == 'click') {
       if ($event.column.prop == 'container') {
-        alert("Go to container page (" + $event.row.container + ")");
+        if ($event.row.container_type.class.startsWith("repo")) {
+          this.router.navigate(['/repos/', $event.row.container]);
+        } else {
+          this.router.navigate(['/snapshots/', $event.row.container]);
+        }
       } else {
-        alert("Go to package page (" + $event.row.name + ")");
+        this.router.navigate(['/package/', $event.row.name]);
       }
       console.log($event);
     }

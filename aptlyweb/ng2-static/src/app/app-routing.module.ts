@@ -4,15 +4,17 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes }  from '@angular/router';
 
-import { GlobalSearchModule } from './global-search/global-search.module'
-import { ReposModule } from './repos/repos.module'
-import { SnapshotsModule } from './snapshots/snapshots.module'
+import { GlobalSearchModule } from './global-search/global-search.module';
+import { ReposModule } from './repos/repos.module';
+import { SnapshotsModule } from './snapshots/snapshots.module';
+import { PackageModule } from './package/package.module';
 
 const appRoutes: Routes = [
   { path: '', redirectTo: 'search', pathMatch: 'full' },
   { path: 'search', loadChildren: './global-search/global-search.module#GlobalSearchModule' },
   { path: 'repos', loadChildren: './repos/repos.module#ReposModule' },
-  { path: 'snapshots', loadChildren: './snapshots/snapshots.module#SnapshotsModule' }
+  { path: 'snapshots', loadChildren: './snapshots/snapshots.module#SnapshotsModule' },
+  { path: 'package', loadChildren: './package/package.module#PackageModule'}
 ];
 
 @NgModule({
@@ -20,6 +22,7 @@ const appRoutes: Routes = [
     GlobalSearchModule,
     ReposModule,
     SnapshotsModule,
+    PackageModule,
     RouterModule.forRoot(appRoutes)
   ],
   exports: [
