@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-snapshots',
@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./snapshots.component.scss']
 })
 export class SnapshotsComponent implements OnInit {
+  @ViewChild('snapshotInput') snapshotInput: ElementRef;
   mockSnapshots: Array<object>;
 
   constructor() {
@@ -13,15 +14,16 @@ export class SnapshotsComponent implements OnInit {
     let publicSnapIcon = { name: 'folder_shared', "class": "snapshots-icon_basic" };
     let addIcon = { name: 'add_circle', "class": "snapshots-icon_basic" };
     this.mockSnapshots = [
-      {icon: publicSnapIcon, name: 'production-messaging', date: '2017-04-10', base: 'Debian Wheezy', comment: 'Some Comment'},
-      {icon: publicSnapIcon, name: 'old-messaging', date: '2016-03-10', base: 'Debian Lenny', comment: 'Some Comment'},
-      {icon: basicSnapIcon, name: 'testing-messaging', date: '2017-04-20', base: 'Debian Sid', comment: 'Testing only!'},
-      {icon: basicSnapIcon, name: 'beta-msg', date: '2017-04-22', base: 'Debian Sid', comment: 'Future update'},
+      {icon: publicSnapIcon, name: 'production-messaging-001', date: '2017-04-10', base: 'Debian Wheezy', comment: 'Some Comment'},
+      {icon: publicSnapIcon, name: 'production-messaging-002', date: '2016-04-15', base: 'Debian Lenny', comment: 'Some Comment'},
+      {icon: basicSnapIcon, name: 'testing-vasya', date: '2017-04-20', base: 'Debian Sid', comment: 'Testing only!'},
+      {icon: basicSnapIcon, name: 'beta-msg-2017-05-01', date: '2017-05-01', base: 'Debian Sid', comment: 'Future update'},
       {icon: addIcon, name: 'Add new'}
     ]
   }
 
   ngOnInit() {
+    this.snapshotInput.nativeElement.focus();
   }
 
 }

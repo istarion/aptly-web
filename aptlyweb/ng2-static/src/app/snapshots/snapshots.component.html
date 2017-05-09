@@ -1,9 +1,9 @@
 <div class="snapshots" fxLayout="column" fxLayoutAlign="space-around stretch">
   <md-input-container >
-    <input mdInput placeholder="Snapshot name">
+    <input mdInput placeholder="Snapshot name" #snapshotInput>
   </md-input-container>
   <md-list class="snapshots__list">
-    <md-list-item class="snapshots__list-item" *ngFor="let snap of mockSnapshots">
+    <md-list-item class="snapshots__list-item" *ngFor="let snap of mockSnapshots" [routerLink]="['/snapshots/', snap.name]">
       <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="25px" fxFlex>
         <md-icon md-list-icon [ngClass]="snap.icon.class">{{snap.icon.name}}</md-icon>
         <span fxFlex>{{snap.name}}</span>

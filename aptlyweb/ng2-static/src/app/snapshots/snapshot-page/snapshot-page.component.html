@@ -1,0 +1,71 @@
+<div class="snapshot-page" fxLayout="row" fxLayoutAlign="space-between stretch" fxLayoutGap="30px">
+  <div class="snapshot-page__params" fxLayout="column" fxFlex="50%">
+    <div fxLayout="row" fxLayoutGap="0.3em">
+      <span class="snapshot-page__params-field" fxFlex="100px" fxFlexAlign="end">Name:</span>
+      <span fxFill>{{snapshotName}}</span>
+    </div>
+    <div fxLayout="row" fxLayoutGap="0.3em">
+      <span class="snapshot-page__params-field" fxFlex="100px" fxFlexAlign="end">State:</span>
+      <span fxFill>Published</span>
+    </div>
+    <div fxLayout="row" fxLayoutGap="0.3em">
+      <span class="snapshot-page__params-field" fxFlex="100px" fxFlexAlign="end">Distribution:</span>
+      <span fxFill>Debian Wheezy</span>
+    </div>
+    <div fxLayout="row" fxLayoutGap="0.3em">
+      <span class="snapshot-page__params-field" fxFlex="100px" fxFlexAlign="end">Commentary:</span>
+      <span fxFill>Production!</span>
+    </div>
+    <div class="snapshot-page__debstring">
+deb http://mirror.yandex.ru/debian/ wheezy main non-free contrib
+    <br>
+deb-src http://mirror.yandex.ru/debian/ wheezy main non-free contrib
+    </div>
+    <h3>Actions:</h3>
+
+    <md-list class="snapshot-page__action-list">
+      <md-list-item class="snapshot-page__action-list-item">
+        <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="10px" fxFlex>
+          <md-icon md-list-icon class="snapshots-icon">eject</md-icon>
+          <span fxFlex>Unpublish</span>
+        </div>
+      </md-list-item>
+                              <md-list-item class="snapshot-page__action-list-item">
+        <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="10px" fxFlex>
+          <md-icon md-list-icon class="snapshots-icon">call_split</md-icon>
+          <span fxFlex>Diff with...</span>
+        </div>
+      </md-list-item>
+      <hr style="border-top: 1px solid #CCC">
+
+
+<md-list-item class="snapshot-page__action-list-item">
+        <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="10px" fxFlex>
+          <md-icon md-list-icon class="snapshots-icon">edit</md-icon>
+          <span fxFlex>Edit snapshot params</span>
+        </div>
+      </md-list-item>
+    <md-list-item class="snapshot-page__action-list-item">
+        <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="10px" fxFlex>
+          <md-icon md-list-icon class="snapshots-icon">delete_forever</md-icon>
+          <span fxFlex>Delete snapshot</span>
+        </div>
+      </md-list-item>
+      </md-list>
+  </div>
+  <div class="snapshot-page__packages" fxLayout="column" fxFlex="50%">
+      <md-input-container >
+    <input mdInput placeholder="Package name">
+  </md-input-container>
+        <ngx-datatable
+      class="material"
+      [rows]="mockRows"
+      [columns]="mockCols"
+      [columnMode]="'force'"
+      [rowClass]="getRowClass"
+      [scrollbarV]="true"
+      (activate)="goToPackage($event)" fxFill>
+    </ngx-datatable>
+  </div>
+
+</div>

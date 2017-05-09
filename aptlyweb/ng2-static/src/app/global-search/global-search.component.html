@@ -2,7 +2,7 @@
   <form>
     <div [fxLayout]="row" class="fullscreen-row">
       <md-input-container fxFlex>
-        <input mdInput placeholder="Package name">
+        <input mdInput placeholder="Package name" #searchInput>
       </md-input-container>
       <button fxFlexAlign="center" class="button mat-primary" md-raised-button (click)="find()">Find</button>
       <md-slide-toggle fxFlexAlign="center" class="button" [(ngModel)]="advancedSearch" (change)="extendedSearchTrigger()"

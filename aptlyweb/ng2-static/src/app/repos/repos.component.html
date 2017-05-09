@@ -1,9 +1,9 @@
 <div class="repos" fxLayout="column" fxLayoutAlign="space-around stretch">
   <md-input-container >
-    <input mdInput placeholder="Repository name">
+    <input mdInput placeholder="Repository name" #repoInput>
   </md-input-container>
   <md-list class="repos__list">
-    <md-list-item class="repos__list-item" *ngFor="let repo of mockRepos">
+    <md-list-item class="repos__list-item" *ngFor="let repo of mockRepos" [routerLink]="['/repos/', repo.name]">
       <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="25px" fxFlex>
         <md-icon md-list-icon [ngClass]="repo.icon.class">{{repo.icon.name}}</md-icon>
         <span fxFlex>{{repo.name}}</span>

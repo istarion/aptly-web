@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-repos',
@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./repos.component.scss']
 })
 export class ReposComponent implements OnInit {
+  @ViewChild('repoInput') repoInput: ElementRef;
   mockRepos: Array<object>;
 
   constructor() {
@@ -22,6 +23,7 @@ export class ReposComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.repoInput.nativeElement.focus();
   }
 
 }
