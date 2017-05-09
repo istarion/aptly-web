@@ -1,6 +1,6 @@
 <div class="repo-page" fxLayout="row" fxLayoutAlign="space-between stretch" fxLayoutGap="30px">
   <div class="repo-page__params" fxLayout="column" fxFlex="50%">
-    <h3>Repository params:</h3>
+            <h3 class="header">Repository properties:</h3>
     <div fxLayout="row" fxLayoutGap="0.3em">
       <span class="repo-page__params-field" fxFlex="150px" fxFlexAlign="end">Name:</span>
       <span fxFill>{{repoName}}</span>
@@ -17,66 +17,72 @@
       <span class="repo-page__params-field" fxFlex="150px" fxFlexAlign="end">Commentary:</span>
       <span fxFill>Production!</span>
     </div>
-    <div class="repo-page__debstring">
-deb http://mirror.yandex.ru/debian/ wheezy main non-free contrib
-    <br>
-deb-src http://mirror.yandex.ru/debian/ wheezy main non-free contrib
-    </div>
-    <h3>Actions:</h3>
+        <h3 class="header">Actions:</h3>
 
-    <md-list class="repo-page__action-list">
-      <md-list-item class="repo-page__action-list-item">
-        <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="10px" fxFlex>
-          <md-icon class="repo-icon" md-list-icon>publish</md-icon>
-          <span fxFlex>Publish</span>
-        </div>
-      </md-list-item>
-            <md-list-item class="repo-page__action-list-item">
-        <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="10px" fxFlex>
-          <md-icon class="repo-icon" md-list-icon>add_circle</md-icon>
-          <span fxFlex>Add Package</span>
-        </div>
-      </md-list-item>
-                  <md-list-item class="repo-page__action-list-item">
-        <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="10px" fxFlex>
-          <md-icon class="repo-icon" md-list-icon>remove_circle</md-icon>
-          <span fxFlex>Remove Package</span>
-        </div>
-      </md-list-item>
+    <div fxLayout="row" fxLayoutGap="10px">
+    <md-list fxFlex="50" class="repo-page__action-list">
+                <md-list-item class="repo-page__action-list-item">
+            <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="10px" fxFlex>
+              <md-icon class="repo-icon" md-list-icon>publish</md-icon>
+              <span fxFlex>Publish repository</span>
+            </div>
+          </md-list-item>
+                <md-list-item class="repo-page__action-list-item">
+            <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="10px" fxFlex>
+              <md-icon class="repo-icon" md-list-icon>edit</md-icon>
+              <span fxFlex>Edit repository params</span>
+            </div>
+          </md-list-item>
+          <md-list-item class="repo-page__action-list-item">
+            <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="10px" fxFlex>
+              <md-icon class="repo-icon" md-list-icon>delete_forever</md-icon>
+              <span fxFlex>Delete repository</span>
+            </div>
+          </md-list-item>
+    </md-list>
+      <md-list fxFlex="50" class="repo-page__action-list">
+
+          <md-list-item class="repo-page__action-list-item">
+            <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="10px" fxFlex>
+              <md-icon class="repo-icon" md-list-icon>add_circle</md-icon>
+              <span fxFlex>Add Package</span>
+            </div>
+          </md-list-item>
+          <md-list-item class="repo-page__action-list-item">
+            <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="10px" fxFlex>
+              <md-icon class="repo-icon" md-list-icon>remove_circle</md-icon>
+              <span fxFlex>Remove Package</span>
+            </div>
+          </md-list-item>
+          <md-list-item class="repo-page__action-list-item" [routerLink]="['/diff/repo/old-messaging/snap/beta-msg-2017-05-01']">
+            <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="10px" fxFlex>
+              <md-icon class="repo-icon" md-list-icon>call_split</md-icon>
+              <span fxFlex>Compare with ...</span>
+            </div>
+          </md-list-item>
                         <md-list-item class="repo-page__action-list-item">
-        <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="10px" fxFlex>
-          <md-icon class="repo-icon" md-list-icon>folder_open</md-icon>
-          <span fxFlex>Create snapshot</span>
-        </div>
-      </md-list-item>
-                              <md-list-item class="repo-page__action-list-item">
-        <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="10px" fxFlex>
-          <md-icon class="repo-icon" md-list-icon>call_split</md-icon>
-          <span fxFlex>Diff with...</span>
-        </div>
-      </md-list-item>
-      <hr style="border-top: 1px solid #CCC">
-
-
-<md-list-item class="repo-page__action-list-item">
-        <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="10px" fxFlex>
-          <md-icon class="repo-icon" md-list-icon>edit</md-icon>
-          <span fxFlex>Edit repository params</span>
-        </div>
-      </md-list-item>
-    <md-list-item class="repo-page__action-list-item">
-        <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="10px" fxFlex>
-          <md-icon class="repo-icon" md-list-icon>delete_forever</md-icon>
-          <span fxFlex>Delete repository</span>
-        </div>
-      </md-list-item>
-      </md-list>
+            <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="10px" fxFlex>
+              <md-icon class="repo-icon" md-list-icon>folder_open</md-icon>
+              <span fxFlex>Create snapshot</span>
+            </div>
+          </md-list-item>
+        </md-list>
+      </div>
+    <h3 class="header">Sources.list:</h3>
+    <div class="repo-page__debstring">
+      deb http://mirror.yandex.ru/debian/ wheezy main non-free contrib
+      <br>
+      deb-src http://mirror.yandex.ru/debian/ wheezy main non-free contrib
+    </div>
   </div>
+
+
   <div class="repo-page__packages" fxLayout="column" fxFlex="50%">
-      <md-input-container >
-    <input mdInput placeholder="Package name">
-  </md-input-container>
-        <ngx-datatable
+    <h3 class="header">Package list:</h3>
+    <md-input-container>
+      <input mdInput placeholder="Package name">
+    </md-input-container>
+    <ngx-datatable
       class="material"
       [rows]="mockRows"
       [columns]="mockCols"

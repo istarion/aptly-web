@@ -1,5 +1,5 @@
 .repo-page {
-  padding: 30px 50px 0 50px;
+  padding: 10px 50px 0 50px;
 }
 
 .repo-page__params {
@@ -34,10 +34,14 @@
 }
 
 .repo-page__packages {
-  height: calc(100vh - 180px);
+  height: calc(100vh - 250px);
 }
 
 .repo-icon {
   color: #03a9f4;
 }
 
+.header {
+  font-size: 1.4rem;
+  text-align: center;
+}

@@ -1,0 +1,21 @@
+<div class="diff" fxLayout="column">
+  <md-input-container>
+    <input mdInput placeholder="Package name">
+  </md-input-container>
+  <div fxLayout="row">
+    <h3 class="header" fxFlex="50%" style="margin-bottom: 10px;">
+      {{getContainerType(leftType)}}[{{leftName}}]</h3>
+    <h3 class="header" fxFlex="50%" style="margin-bottom: 10px;">
+      {{getContainerType(rightType)}}[{{rightName}}]</h3>
+  </div>
+
+  <ngx-datatable
+    class="material"
+    [rows]="mockRows"
+    [columns]="mockCols"
+    [columnMode]="'force'"
+    [rowClass]="getRowClass"
+    [scrollbarV]="true"
+    (activate)="diffElementActivate($event)">
+  </ngx-datatable>
+</div>

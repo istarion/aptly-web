@@ -1,6 +1,6 @@
 <div class="global-search-component" fxLayout="column" fxLayoutGap="25px" #globalSearch>
   <form>
-    <div [fxLayout]="row" class="fullscreen-row">
+    <div fxLayout="row" class="fullscreen-row">
       <md-input-container fxFlex>
         <input mdInput placeholder="Package name" #searchInput>
       </md-input-container>
@@ -14,7 +14,7 @@
          [@flyInOut]="'flyFromLeft'" fxLayout="column">
       <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="10px">
         <md-checkbox [checked]="true" fxFlex="150px">Repository</md-checkbox>
-        <div flexLayout="row" fxFlex fxLayoutAlign="stretch center">
+        <div fxLayout="row" fxFlex fxLayoutAlign="stretch center">
           <md-select style="width: 170px;" [(ngModel)]="filter.versionOperation" placeholder="&nbsp;"
                      name="versionOperation">
             <md-option [value]="'=='">Package version ==</md-option>

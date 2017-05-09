@@ -1,3 +1,82 @@
-<p>
-  package {{packageName}} works!
-</p>
+<div class="package" fxLayout="row" fxLayoutAlign="space-between stretch" fxLayoutGap="30px">
+  <div fxLayout="column" fxFlex="50%" class="package__properties" style="height: 100%">
+    <h3 class="header">Package properties:</h3>
+    <div fxLayout="row" fxLayoutGap="0.3em">
+      <span class="package__properties-field" fxFlex="200px" fxFlexAlign="end">Name:</span>
+      <span fxFlex>{{packageName}}</span>
+    </div>
+        <div fxLayout="row" fxLayoutGap="0.3em">
+      <span class="package__properties-field" fxFlex="200px" fxFlexAlign="end">Version:</span>
+      <span fxFlex>5.25</span>
+    </div>
+    <div fxLayout="row" fxLayoutGap="0.3em">
+      <span class="package__properties-field" fxFlex="200px" fxFlexAlign="end">Filename:</span>
+      <span fxFlex>oracle-client_5.25_i386.deb</span>
+    </div>
+    <div fxLayout="row" fxLayoutGap="0.3em">
+      <span class="package__properties-field" fxFlex="200px" fxFlexAlign="end">Architecture:</span>
+      <span fxFlex>i386</span>
+    </div>
+    <div fxLayout="row" fxLayoutGap="0.3em">
+      <span class="package__properties-field" fxFlex="200px" fxFlexAlign="end">Key:</span>
+      <span fxFlex>Pi386 oracle-client 5.29_i386.deb</span>
+    </div>
+    <div fxLayout="row" fxLayoutGap="0.3em">
+      <span class="package__properties-field" fxFlex="200px" fxFlexAlign="end">Depends:</span>
+      <span fxFlex>libboost-program-options1.49-dev</span>
+    </div>
+    <div fxLayout="row" fxLayoutGap="0.3em">
+      <span class="package__properties-field" fxFlex="200px" fxFlexAlign="end">Hash:</span>
+      <span fxFlex>KLDJFJlsdfj324</span>
+    </div>
+    <div fxLayout="row" fxLayoutGap="0.3em">
+      <span class="package__properties-field" fxFlex="200px" fxFlexAlign="end">Size:</span>
+      <span fxFlex>10M</span>
+    </div>
+    <div fxLayout="row" fxLayoutGap="0.3em">
+      <span class="package__properties-field" fxFlex="200px" fxFlexAlign="end">Maintainer:</span>
+      <span fxFlex>Oracle corporation</span>
+    </div>
+  </div>
+  <div fxLayout="column" fxFlex="50%" fxLayoutGap="10px">
+    <h3 class="header">Description:</h3>
+    <div style="text-indent: 25px;">
+      Free, light-weight and easily installed Oracle Database tools, libraries and SDKs for building and connecting client applications to local or remote Oracle Databases
+    </div>
+    <h3 class="header">Actions:</h3>
+          <md-list class="package__action-list">
+
+          <md-list-item class="package__action-list-item">
+            <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="10px" fxFlex>
+              <md-icon class="package-icon" md-list-icon>add_circle</md-icon>
+              <span fxFlex>Add to repository</span>
+            </div>
+          </md-list-item>
+          <md-list-item class="package__action-list-item" [routerLink]="'/search'">
+            <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="10px" fxFlex>
+              <md-icon class="package-icon" md-list-icon>search</md-icon>
+              <span fxFlex>Search all usages</span>
+            </div>
+          </md-list-item>
+          <md-list-item class="package__action-list-item" [routerLink]="'/search'">
+            <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="10px" fxFlex>
+              <md-icon class="package-icon" md-list-icon>youtube_searched_for</md-icon>
+              <span fxFlex>Search another versions</span>
+            </div>
+          </md-list-item>
+                        <md-list-item class="package__action-list-item">
+            <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="10px" fxFlex>
+              <md-icon class="package-icon" md-list-icon>content_copy</md-icon>
+              <span fxFlex>Copy package key</span>
+            </div>
+          </md-list-item>
+            <hr style="border-top: 1px solid #CCC;">
+                                    <md-list-item class="package__action-list-item">
+            <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="10px" fxFlex>
+              <md-icon class="package-icon" md-list-icon>file_download</md-icon>
+              <span fxFlex>Download</span>
+            </div>
+          </md-list-item>
+        </md-list>
+  </div>
+</div>

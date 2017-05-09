@@ -6,6 +6,17 @@
 
 .clickable-row{
   cursor: pointer!important;
+      &:hover {
+    background-color: lightgray!important;
+  }
+}
+
+.red-diff {
+  background-color: #ffd6de;
+}
+
+.green-diff {
+  background-color: #e0ffda;
 }
 
 router-outlet + * { flex: 1 1 auto ; display: flex ; flex-direction: column ; }

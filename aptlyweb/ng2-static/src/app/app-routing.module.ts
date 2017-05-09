@@ -8,13 +8,15 @@ import { GlobalSearchModule } from './global-search/global-search.module';
 import { ReposModule } from './repos/repos.module';
 import { SnapshotsModule } from './snapshots/snapshots.module';
 import { PackageModule } from './package/package.module';
+import { DiffModule } from './diff/diff.module';
 
 const appRoutes: Routes = [
   { path: '', redirectTo: 'search', pathMatch: 'full' },
   { path: 'search', loadChildren: './global-search/global-search.module#GlobalSearchModule' },
   { path: 'repos', loadChildren: './repos/repos.module#ReposModule' },
   { path: 'snapshots', loadChildren: './snapshots/snapshots.module#SnapshotsModule' },
-  { path: 'package', loadChildren: './package/package.module#PackageModule'}
+  { path: 'package', loadChildren: './package/package.module#PackageModule'},
+  { path: 'diff', loadChildren: './diff/diff.module#DiffModule'}
 ];
 
 @NgModule({
@@ -23,6 +25,7 @@ const appRoutes: Routes = [
     ReposModule,
     SnapshotsModule,
     PackageModule,
+    DiffModule,
     RouterModule.forRoot(appRoutes)
   ],
   exports: [

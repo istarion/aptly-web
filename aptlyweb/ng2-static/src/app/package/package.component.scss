@@ -1,0 +1,39 @@
+.package {
+  padding: 10px 50px 0 50px;
+  font-size: large;
+  height: calc(100vh - 100px);
+}
+
+.package__properties {
+  font-size: large;
+  background-color: #f2f2f2;
+  border-right: solid 1px;
+  padding-bottom: 20px;
+  height: 100%;
+}
+
+.package__properties-field {
+  text-align: end;
+    letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.header {
+  font-size: 1.4rem;
+  text-align: center;
+}
+
+.package__action-list {
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.12), 0 1px 2px 0 rgba(0, 0, 0, 0.24);
+}
+
+.package__action-list-item {
+  &:hover {
+    background-color: #f0f0f0;
+    cursor: pointer;
+  }
+}
+
+.package-icon {
+  color: #646464;
+}

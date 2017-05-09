@@ -18,7 +18,7 @@ export class SnapshotsComponent implements OnInit {
       {icon: publicSnapIcon, name: 'production-messaging-002', date: '2016-04-15', base: 'Debian Lenny', comment: 'Some Comment'},
       {icon: basicSnapIcon, name: 'testing-vasya', date: '2017-04-20', base: 'Debian Sid', comment: 'Testing only!'},
       {icon: basicSnapIcon, name: 'beta-msg-2017-05-01', date: '2017-05-01', base: 'Debian Sid', comment: 'Future update'},
-      {icon: addIcon, name: 'Add new'}
+      {icon: addIcon, name: 'Create new'}
     ]
   }
 
