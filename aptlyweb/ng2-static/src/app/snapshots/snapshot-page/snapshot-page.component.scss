@@ -4,6 +4,9 @@
 
 .snapshot-page__params {
   font-size: large;
+    background-color: #fafafa;
+  border-right: solid 1px #ebebeb;
+  padding: 0 10px;
 }
 
 .snapshot-page__params-field {
@@ -35,7 +38,7 @@
 }
 
 .snapshot-page__packages {
-  height: calc(100vh - 250px);
+  height: calc(100vh - 100px);
 }
 
 .snapshots-icon {
@@ -44,5 +47,10 @@
 
 .header {
   font-size: 1.4rem;
-  text-align: center;
+  //text-align: center;
+  text-indent: 25px;
+}
+
+.second-line {
+  background-color: #e6e6e6;
 }

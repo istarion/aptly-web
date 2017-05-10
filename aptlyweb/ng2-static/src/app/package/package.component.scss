@@ -5,22 +5,32 @@
 }
 
 .package__properties {
+  padding: 0 10px;
   font-size: large;
-  background-color: #f2f2f2;
-  border-right: solid 1px;
+  background-color: #fafafa;
+  border-right: solid 1px #e1e1e1;
   padding-bottom: 20px;
   height: 100%;
 }
 
 .package__properties-field {
-  text-align: end;
+  //text-align: end;
     letter-spacing: 0.05em;
   text-transform: uppercase;
 }
 
+.package__properties-field_first {
+  //background-color: #ebebeb;
+}
+
+.package__properties-field_second {
+  background-color: #e6e6e6;
+}
+
 .header {
   font-size: 1.4rem;
-  text-align: center;
+  text-indent: 25px;
+  //text-align: center;
 }
 
 .package__action-list {

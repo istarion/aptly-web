@@ -39,6 +39,7 @@ export class GlobalSearchComponent implements OnInit {
 
   constructor(private router: Router) {
     this.advancedSearch = false;
+    this.findTriggered = true;
     this.architectures = [{code: 0, name: "All"}, {code: 1, name: "i386"}, {code: 2, name: "amd64"}];
     this.filter = {
       arch: 0,
@@ -282,8 +283,8 @@ export class GlobalSearchComponent implements OnInit {
         name: '&nbsp',
         prop: 'container_type',
         cellTemplate: this.iconTemplate,
-        "width": 30,
-        "max-width": 30,
+        "width": 50,
+        "max-width": 50,
         "canAutoResize": false
       },
       {name: 'Container'},

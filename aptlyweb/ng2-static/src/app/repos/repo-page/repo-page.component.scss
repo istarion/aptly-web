@@ -4,12 +4,19 @@
 
 .repo-page__params {
   font-size: large;
+  padding: 0 10px;
+  background-color: #fafafa;
+  border-right: solid 1px #e1e1e1;
 }
 
 .repo-page__params-field {
-  text-align: end;
+  //text-align: end;
     letter-spacing: 0.05em;
   text-transform: uppercase;
+}
+
+.second-line {
+  background-color: #e6e6e6;
 }
 
 .repo-page__debstring{
@@ -34,7 +41,7 @@
 }
 
 .repo-page__packages {
-  height: calc(100vh - 250px);
+  height: calc(100vh - 100px);
 }
 
 .repo-icon {
@@ -43,5 +50,6 @@
 
 .header {
   font-size: 1.4rem;
-  text-align: center;
+  //text-align: center;
+  text-indent: 25px;
 }

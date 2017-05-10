@@ -6,17 +6,29 @@
 
 .clickable-row{
   cursor: pointer!important;
-      &:hover {
-    background-color: lightgray!important;
+  &:hover {
+    background-color: #f5f5f5 !important;
   }
 }
 
+.datatable-body-row:hover {
+  background-color: #fafafa !important;
+}
+
+html {
+  font-family: 'Roboto', sans-serif;
+}
+
 .red-diff {
-  background-color: #ffd6de;
+    //color: #fff0f0;
+  color: darkred;
+  font-weight: 500;
 }
 
 .green-diff {
-  background-color: #e0ffda;
+  //color: #e0ffda;
+  color: darkgreen;
+  font-weight: 500;
 }
 
 router-outlet + * { flex: 1 1 auto ; display: flex ; flex-direction: column ; }

@@ -5,7 +5,7 @@
       <span class="snapshot-page__params-field" fxFlex="150px" fxFlexAlign="end">Name:</span>
       <span fxFill>{{snapshotName}}</span>
     </div>
-    <div fxLayout="row" fxLayoutGap="0.3em">
+    <div fxLayout="row" fxLayoutGap="0.3em" class="second-line">
       <span class="snapshot-page__params-field" fxFlex="150px" fxFlexAlign="end">State:</span>
       <span fxFill>Published</span>
     </div>
@@ -13,7 +13,7 @@
       <span class="snapshot-page__params-field" fxFlex="150px" fxFlexAlign="end">Distribution:</span>
       <span fxFill>Debian Wheezy</span>
     </div>
-    <div fxLayout="row" fxLayoutGap="0.3em">
+    <div fxLayout="row" fxLayoutGap="0.3em" class="second-line">
       <span class="snapshot-page__params-field" fxFlex="150px" fxFlexAlign="end">Commentary:</span>
       <span fxFill>Production!</span>
     </div>
@@ -48,7 +48,7 @@
       </md-list-item>
       </md-list>
       </div>
-      <h3 style="text-align: center">Sources.list:</h3>
+      <h3 class="header">Sources.list:</h3>
       <div class="snapshot-page__debstring">
 deb http://mirror.yandex.ru/debian/ wheezy main non-free contrib
     <br>
@@ -57,9 +57,9 @@ deb-src http://mirror.yandex.ru/debian/ wheezy main non-free contrib
   </div>
 
   <div class="snapshot-page__packages" fxLayout="column" fxFlex="50%">
-    <h3 class="header">Package list:</h3>
+    <h3 class="header" style="margin-bottom: 0">Package list:</h3>
       <md-input-container >
-    <input mdInput placeholder="Package name">
+    <input mdInput placeholder="Filter by name">
   </md-input-container>
         <ngx-datatable
       class="material"
@@ -68,7 +68,7 @@ deb-src http://mirror.yandex.ru/debian/ wheezy main non-free contrib
       [columnMode]="'force'"
       [rowClass]="getRowClass"
       [scrollbarV]="true"
-      (activate)="goToPackage($event)" fxFill>
+      (activate)="goToPackage($event)" fxFlex>
     </ngx-datatable>
   </div>
 
