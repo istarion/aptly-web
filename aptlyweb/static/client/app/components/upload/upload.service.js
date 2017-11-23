@@ -5,7 +5,7 @@
 class UploadPackageResource {
   constructor($resource, $location) {
     'ngInject';
-    var data = $resource($location.absUrl().slice(0, $location.absUrl().indexOf($location.url())) + '/api/upload', {}, {
+    var data = $resource($location.protocol() + '://' + $location.host() + ':' + $location.port() + '/api/upload', {}, {
         create: {
             method: "POST",
             transformRequest: angular.identity,

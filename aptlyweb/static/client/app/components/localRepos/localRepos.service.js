@@ -6,7 +6,7 @@ class LocalReposResource{
   constructor($resource, $location) {
     'ngInject';
 
-    var data = $resource($location.absUrl().slice(0, $location.absUrl().indexOf($location.url())) + '/api/repos/:Name', {Name: '@Name'});
+    var data = $resource($location.protocol() + '://' + $location.host() + ':' + $location.port() + '/api/repos/:Name', {Name: '@Name'});
 
     return data;
   }
@@ -16,7 +16,7 @@ class AddPkgByKeyResource{
     constructor($resource, $location) {
     'ngInject';
 
-    var data = $resource($location.absUrl().slice(0, $location.absUrl().indexOf($location.url())) + '/api/repos/:Name/add_pkg',
+    var data = $resource($location.protocol() + '://' + $location.host() + ':' + $location.port() + '/api/repos/:Name/add_pkg',
       {
         Name: '@Name',
         PackageRefs: '@PackageRefs'
@@ -30,7 +30,7 @@ class AddPkgFromUploadResource{
     constructor($resource, $location) {
     'ngInject';
 
-    var data = $resource($location.absUrl().slice(0, $location.absUrl().indexOf($location.url())) + '/api/repos/:Name/add_from_upload/',
+    var data = $resource($location.protocol() + '://' + $location.host() + ':' + $location.port() + '/api/repos/:Name/add_from_upload/',
       {
         Name: '@Name',
         filename: '@filename'
@@ -44,7 +44,7 @@ class DelPkgByKeyResource{
     constructor($resource, $location) {
     'ngInject';
 
-    var data = $resource($location.absUrl().slice(0, $location.absUrl().indexOf($location.url())) + '/api/repos/:Name/del_pkg',
+    var data = $resource($location.protocol() + '://' + $location.host() + ':' + $location.port() + '/api/repos/:Name/del_pkg',
       {
         Name: '@Name',
         PackageRefs: '@PackageRefs'
