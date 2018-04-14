@@ -12,7 +12,7 @@ gulp webpack
 
 ## Provide symlink to static
 ```
-ln -s $APTLYWEB$/static/dist/index.html
+ln -s $APTLYWEB$/static/dist/index.html $APTLYWEB$/templates/index.html
 ```
 
 ## How to build wheel:
