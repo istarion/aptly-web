@@ -2,6 +2,19 @@
 
 > Currently under development. 
 
+## How to build static:
+```
+cd aptlyweb/static
+sudo npm install -g gulp
+npm install
+gulp webpack
+```
+
+## Provide symlink to static
+```
+ln -s $APTLYWEB$/static/dist/index.html
+```
+
 ## How to build wheel:
 ```
 python setup.py bdist_wheel --universal
