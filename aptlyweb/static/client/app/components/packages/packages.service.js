@@ -6,7 +6,7 @@ class PackagesResource{
   constructor($resource, $location) {
     'ngInject';
 
-    var data = $resource('http://' + $location.host() + ':' + $location.port() + '/api/:type/:srcName/packages');
+    var data = $resource($location.protocol() + '://' + $location.host() + ':' + $location.port() + '/api/:type/:srcName/packages');
 
     return data;
   }

@@ -16,11 +16,11 @@ from aptlyweb.models.user import User
 
 @app.ldap_manager.save_user
 def save_user(dn, username, data, memberships):
-    user = app.user_datastore.get_user(username)
+    user = app.user_datastore.find_user(login=username)
     login_groups = app.config.get('APTLY_USERS_GROUP_LIST')
     if not user:
         if check_group(data, login_groups):
-            user = app.user_datastore.create_user(login=username, password='', )
+            user = app.user_datastore.create_user(dn=dn, login=username, password='', )
             db.session.commit()
             update_roles_by_groups(data, username)
             return user

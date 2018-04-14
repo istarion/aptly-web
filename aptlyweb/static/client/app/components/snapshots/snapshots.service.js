@@ -6,7 +6,7 @@ class SnapshotsResource{
   constructor($resource, $location) {
     'ngInject';
 
-    var data = $resource('http://' + $location.host() + ':' + $location.port() + '/api/snapshots/:Name', {Name: '@Name'});
+    var data = $resource($location.protocol() + '://' + $location.host() + ':' + $location.port() + '/api/snapshots/:Name', {Name: '@Name'});
 
     return data;
   }
